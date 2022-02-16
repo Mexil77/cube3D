@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/02/15 18:12:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:58:00 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	ft_validline(char *line)
 	split = ft_split(line, ' ');
 	i = -1;
 	while (split[++i])
-		printf("split[%zu] : %s\n", split[i]);
+		printf("split[%zu] : %s\n", i, split[i]);
 	ft_freedouble(split);
 }
 
