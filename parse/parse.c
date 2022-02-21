@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/02/21 13:39:20 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:52:28 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,8 @@ bool	ft_ismap(char *line)
 		return (false);
 	i = -1;
 	while (line[++i])
-	{
-		if (line[i] != 'N' && line[i] != 'S' && line[i] != 'E'
-			&& line[i] != 'W' && line[i] != '1' && line[i] != '0'
-			&& line[i] != ' ' && line[i] != '\n')
+		if (!ft_validcharmap(line[i]) && line[i] != ' ' && line[i] != '\n')
 			return (false);
-	}
 	return (true);
 }
 
@@ -55,17 +51,23 @@ void	ft_countmap(t_general *g, char *map)
 	close(fd);
 }
 
-char	*ft_validfinal(char *str)
+char	*ft_fillline(t_general *g, char *line)
 {
+	char	*mapline;
 	size_t	i;
 
-	if (!str)
+	mapline = ft_calloc(sizeof(char), g->w + 1);
+	if (!mapline)
 		return (NULL);
 	i = -1;
-	while (str[++i])
-		if (str[i] == '\n')
-			return (ft_substr(str, 0, ft_strlen(str) - 1));
-	return (ft_strdup(str));
+	while (++i < g->w)
+	{
+		if (i < ft_strlen(line) && line[i] != '\n')
+			mapline[i] = line[i];
+		else
+			mapline[i] = ' ';
+	}
+	return (mapline);
 }
 
 void	ft_fillmap(t_general *g, char *map)
@@ -85,7 +87,7 @@ void	ft_fillmap(t_general *g, char *map)
 	while (line)
 	{
 		if (ft_ismap(line))
-			g->map[i++] = ft_validfinal(line);
+			g->map[i++] = ft_fillline(g, line);
 		free (line);
 		line = get_next_line(fd);
 	}
@@ -96,4 +98,9 @@ void	ft_parsemap(t_general *g, char *map)
 {
 	ft_countmap(g, map);
 	ft_fillmap(g, map);
+	if (ft_validatemap(g))
+		printf("Mapa Valido\n");
+	else
+		printf("Mapa Invalido\n");
+	ft_getcaracterpos(g);
 }

@@ -6,12 +6,12 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2022/02/21 14:23:04 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/02/21 16:26:28 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	main.c			\
-			parse/parse.c	\
+SRCS	=	main.c								\
+			parse/parse.c parse/validations.c	\
 			utils/utils.c
 LIBFT	=	Libft/libft.a
 OBJS	=	${SRCS:.c=.o}

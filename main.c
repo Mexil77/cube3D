@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/02/21 14:22:58 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:26:01 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	ft_printgeneral(t_general *g)
 	printf("tw : %s\n", g->tw);
 	printf("f : %s\n", g->f);
 	printf("c : %s\n", g->c);
-	printf("pos : %s\n", g->pos);
+	printf("pos : %c\n", g->pos);
+	printf("posx : %zu\n", g->posx);
+	printf("posy : %zu\n", g->posy);
 	printf("w : %zu\n", g->w);
 	printf("h : %zu\n", g->h);
 	i = -1;
