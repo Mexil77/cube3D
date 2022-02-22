@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/02/21 18:46:11 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:47:43 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 typedef struct s_general
 {
+	void	*mlx;
+	void	*win;
+	int		winh;
+	int		winw;
 	char	**map;
 	char	*tn;
 	char	*ts;
@@ -32,6 +36,11 @@ typedef struct s_general
 	char	*f;
 	char	*c;
 	char	pos;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		linelenght;
+	int		endian;
 	size_t	w;
 	size_t	h;
 	size_t	posx;
