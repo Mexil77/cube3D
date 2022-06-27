@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/02/22 13:48:40 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:47:58 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ int	main(int argc, char **argv)
 	general->winh = 1000;
 	printf("mapa : %s\n", argv[1]);
 	ft_parsemap(general, argv[1]);
-	ft_raycast(general);
+	ft_window(general);
+	// ft_raycast(general);
 	ft_printgeneral(general);
-	ft_freesplit(general->map);
-	free (general);
+	mlx_loop(general->mlx);
+	ft_freeall(general);
 	return (0);
 }
