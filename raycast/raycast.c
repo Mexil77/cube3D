@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:36 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/27 17:02:59 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:33:19 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,25 @@
 
 void	ft_raycast(t_general *g)
 {
-	(void) g;
-	// double	posX;
-	// double	posY;
-	// double	dirX;
-	// double	dirY;
-	// double	planeX;
-	// double	planeY;
-	// int		x;
+	double	dir_x;
+	double	dir_y;
+	double	planex;
+	double	planey;
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		x;
 
-	// posX = g->posx;
-	// posY = g->posy;
-	// dirX = -1;
-	// dirY = 0;
-	// planeX = 0;
-	// planeY = 0.66;
-	// while (1)
-	// {
-	// 	x = -1;
-	// 	while (++x < g->winw)
-	// 	{
-	// 		double cameraX = 2 * x / (double)g->winw - 1;
-	// 		double raydirX = dirX + planeX * cameraX;
-	// 		double raydirY = dirY + planeY * cameraX;
-	// 	}
-	// }
+	dir_x = -1;
+	dir_y = 0;
+	planex = 0;
+	planey = 0.66;
+	x = -1;
+	while (++x < (int)g->winw)
+	{
+		camera_x = 2 * x / (double)g->winw - 1;
+		raydir_x = dir_x + planex * camera_x;
+		raydir_y = dir_y + planey * camera_x;
+		printf("camerax: ");
+	}
 }

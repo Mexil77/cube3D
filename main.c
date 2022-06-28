@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/27 17:47:58 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:32:56 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ void	ft_printgeneral(t_general *g)
 		printf("%s\n", g->map[i]);
 }
 
+int	ft_keyhook(int keycode, t_general *g)
+{
+	if (keycode == 53)
+	{
+		ft_freeall(g);
+		exit(0);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_general	*general;
@@ -47,8 +57,9 @@ int	main(int argc, char **argv)
 	printf("mapa : %s\n", argv[1]);
 	ft_parsemap(general, argv[1]);
 	ft_window(general);
-	// ft_raycast(general);
+	ft_raycast(general);
 	ft_printgeneral(general);
+	mlx_key_hook(general->win, ft_keyhook, general);
 	mlx_loop(general->mlx);
 	ft_freeall(general);
 	return (0);
