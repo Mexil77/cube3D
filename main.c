@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/28 17:32:56 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:21:39 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	ft_parsemap(general, argv[1]);
 	ft_window(general);
 	ft_raycast(general);
-	ft_printgeneral(general);
+	// ft_printgeneral(general);
 	mlx_key_hook(general->win, ft_keyhook, general);
 	mlx_loop(general->mlx);
 	ft_freeall(general);

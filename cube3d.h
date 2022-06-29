@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/27 18:15:25 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:32:16 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,23 @@ typedef struct s_general
 	size_t	posx;
 	size_t	posy;
 }	t_general;
+
+typedef struct s_raycast
+{
+	double	dir_x;
+	double	dir_y;
+	double	planex;
+	double	planey;
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+}	t_raycast;
 
 /* Parse */
 void	ft_parsemap(t_general *g, char *map);
