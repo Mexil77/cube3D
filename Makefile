@@ -6,15 +6,15 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2022/06/27 17:45:37 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/06/30 14:54:52 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	main.c								\
 			parse/parse.c parse/validations.c	\
-			utils/utils.c						\
+			utils/utils.c utils/utils2.c		\
 			raycast/raycast.c					\
-			graphics/ft_window.c
+			graphics/ft_window.c graphics/draw.c
 LIBFT	=	Libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 NAME	=	cube3d

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/29 19:32:16 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:24:06 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,20 @@ typedef struct s_raycast
 	double	camera_x;
 	double	raydir_x;
 	double	raydir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 	double	side_dist_x;
 	double	side_dist_y;
+	double	prep_wall_dist;
 	int		step_x;
 	int		step_y;
 	int		map_x;
 	int		map_y;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	bool	hit;
+	bool	side;
 }	t_raycast;
 
 /* Parse */
@@ -74,6 +82,9 @@ void	ft_error(char *str, t_general *g);
 void	ft_freeall(t_general *g);
 int		ft_closeredcros(t_general *g);
 
+/* Utils 2 */
+void	ft_printraycast(t_raycast *r);
+
 /* Validations */
 void	ft_getcaracterpos(t_general *g);
 bool	ft_validatemap(t_general *g);
@@ -81,7 +92,11 @@ bool	ft_validatemap(t_general *g);
 /* Raycast */
 void	ft_raycast(t_general *g);
 
-/* Grapfics */
+/* Window */
 void	ft_window(t_general *g);
+
+/* Draw */
+void	ft_myputpixel(t_general *g, int x, int y, int color);
+void	ft_drawline(t_general *g, int x, int start, int end);
 
 #endif
