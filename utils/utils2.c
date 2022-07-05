@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:42:01 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/30 14:44:29 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:37:07 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,10 @@ void	ft_printraycast(t_raycast *r)
 	printf("draw-start: %d\n", r->draw_start);
 	printf("draw-end: %d\n", r->draw_end);
 	printf("\n");
+}
+
+void	ft_closewindow(t_general *g)
+{
+	ft_freeall(g);
+	exit(0);
 }

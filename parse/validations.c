@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/02/21 18:47:56 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:15:47 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	ft_getcaracterpos(t_general *g)
 				|| g->map[i][j] == 'W' || g->map[i][j] == 'E')
 			{
 				g->pos = g->map[i][j];
-				g->posx = j;
-				g->posy = i;
+				g->posx = j * FACTOR + FACTOR / 2;
+				g->posy = i * FACTOR + FACTOR / 2;
 			}
 		}
 	}

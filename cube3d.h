@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 19:31:27 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:22:57 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ typedef struct s_general
 	size_t	posx;
 	size_t	posy;
 	bool	game;
+	bool	kw;
+	bool	ka;
+	bool	ks;
+	bool	kd;
+	size_t	frame;
 }	t_general;
 
 typedef struct s_raycast
@@ -89,6 +94,7 @@ int		ft_closeredcros(t_general *g);
 
 /* Utils 2 */
 void	ft_printraycast(t_raycast *r);
+void	ft_closewindow(t_general *g);
 
 /* Validations */
 void	ft_getcaracterpos(t_general *g);
@@ -108,6 +114,8 @@ int		ft_getcolor(int t, int r, int g, int b);
 
 /* Minimap */
 void	ft_minimap(t_general *g);
+void	ft_drawplayer(t_general *g);
+void	ft_eraseplayer(t_general *g);
 
 /* Game */
 int		ft_inigame(t_general *g);
