@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 12:59:07 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:31:27 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_general
 	size_t	h;
 	size_t	posx;
 	size_t	posy;
+	bool	game;
 }	t_general;
 
 typedef struct s_raycast
@@ -107,5 +108,11 @@ int		ft_getcolor(int t, int r, int g, int b);
 
 /* Minimap */
 void	ft_minimap(t_general *g);
+
+/* Game */
+int		ft_inigame(t_general *g);
+
+/* main */
+void	ft_printgeneral(t_general *g);
 
 #endif

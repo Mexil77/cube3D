@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 12:41:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:04:11 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,25 @@ void	ft_printgeneral(t_general *g)
 
 int	ft_keyhook(int keycode, t_general *g)
 {
+	printf("keycode: %d\n", keycode);
 	if (keycode == 53)
 	{
 		ft_freeall(g);
 		exit(0);
 	}
 	return (0);
+}
+
+void	ft_leaks(void)
+{
+	system("leaks cube3d");
+}
+
+void	ft_inistruct(t_general *g)
+{
+	g->winw = g->w * FACTOR;
+	g->winh = g->h * FACTOR;
+	g->game = true;
 }
 
 int	main(int argc, char **argv)
@@ -51,16 +64,15 @@ int	main(int argc, char **argv)
 		printf("bad arguments.\n");
 		return (0);
 	}
+	// atexit(ft_leaks);
 	general = (t_general *)ft_calloc(sizeof(t_general), 1);
 	printf("mapa : %s\n", argv[1]);
 	ft_parsemap(general, argv[1]);
-	general->winw = general->w * FACTOR;
-	general->winh = general->h * FACTOR;
+	ft_inistruct(general);
 	ft_window(general);
-	ft_minimap(general);
-	// ft_raycast(general);
 	// ft_printgeneral(general);
 	mlx_key_hook(general->win, ft_keyhook, general);
+	mlx_loop_hook(general->mlx, ft_inigame, general);
 	mlx_loop(general->mlx);
 	ft_freeall(general);
 	return (0);
