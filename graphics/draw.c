@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:46:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/30 15:30:03 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:00:06 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ void	ft_drawline(t_general *g, int x, int start, int end)
 	{
 		printf("i: %d\n", i);
 		ft_myputpixel(g, x, i, color);
+	}
+}
+
+int	ft_getcolor(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	ft_drawsquare(t_general *g, size_t x, size_t y, int color)
+{
+	size_t	xf;
+	size_t	yf;
+
+	yf = -1;
+	while (++yf < FACTOR)
+	{
+		xf = -1;
+		while (++xf < FACTOR)
+			ft_myputpixel(g, x + xf, y + yf, color);
 	}
 }
 

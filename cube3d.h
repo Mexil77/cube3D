@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/30 15:24:06 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:59:07 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <time.h>
 # include <math.h>
 # include <stdbool.h>
+
+# ifndef FACTOR
+#  define FACTOR 50
+# endif
 
 typedef struct s_general
 {
@@ -98,5 +102,10 @@ void	ft_window(t_general *g);
 /* Draw */
 void	ft_myputpixel(t_general *g, int x, int y, int color);
 void	ft_drawline(t_general *g, int x, int start, int end);
+void	ft_drawsquare(t_general *g, size_t x, size_t y, int color);
+int		ft_getcolor(int t, int r, int g, int b);
+
+/* Minimap */
+void	ft_minimap(t_general *g);
 
 #endif

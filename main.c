@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/30 15:29:14 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:41:47 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	general = (t_general *)ft_calloc(sizeof(t_general), 1);
-	general->winw = 2000;
-	general->winh = 1000;
 	printf("mapa : %s\n", argv[1]);
 	ft_parsemap(general, argv[1]);
+	general->winw = general->w * FACTOR;
+	general->winh = general->h * FACTOR;
 	ft_window(general);
-	ft_raycast(general);
+	ft_minimap(general);
+	// ft_raycast(general);
 	// ft_printgeneral(general);
 	mlx_key_hook(general->win, ft_keyhook, general);
 	mlx_loop(general->mlx);
