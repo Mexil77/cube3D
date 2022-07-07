@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 22:01:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:10:09 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	ft_inistruct(t_general *g)
 	g->winh = g->h * FACTOR;
 	g->game = true;
 	g->frame = 0;
+	g->ang = 0;
+	g->spav = 3;
+	g->span = 4;
 }
 
 int	ft_keypress(int keycode, t_general *g)
@@ -64,6 +67,14 @@ int	ft_keypress(int keycode, t_general *g)
 		g->ks = true;
 	else if (keycode == 2)
 		g->kd = true;
+	if (keycode == 13)
+		g->advdir = 1;
+	else if (keycode == 0)
+		g->rot = 1;
+	else if (keycode == 1)
+		g->advdir = -1;
+	else if (keycode == 2)
+		g->rot = -1;
 	return (0);
 }
 

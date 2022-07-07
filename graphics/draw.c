@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:46:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 16:35:45 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:14:00 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,22 @@ void	ft_myputpixel(t_general *g, int x, int y, int color)
 
 	dst = g->addr + (y * g->linelenght + x * (g->bpp / 8));
 	*(unsigned int *)dst = color;
+}
+
+void	ft_drawray(t_general *g, int color)
+{
+	size_t	i;
+	int		xd;
+	int		yd;
+
+	xd = g->posx + g->advdir * cos(g->ang) * 1;
+	yd = g->posy + g->advdir * sin(g->ang) * 1;
+	i = 1;
+	while (ft_validtale(g, xd, yd) && ++i)
+	{
+		xd = g->posx + g->advdir * cos(g->ang) * i;
+		yd = g->posy + g->advdir * sin(g->ang) * i;
+		ft_myputpixel(g, xd, yd, color);
+	}
+	// ft_myputpixel(g, xd, yd, 0x0000000);
 }

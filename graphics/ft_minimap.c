@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 11:46:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 22:21:30 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:54:44 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,11 @@ void	ft_drawgrid(t_general *g)
 	}
 }
 
-void	ft_drawplayer(t_general *g)
-{
-	ft_myputpixel(g, g->posx, g->posy, 0x00FF0000);
-}
-
-void	ft_eraseplayer(t_general *g)
-{
-	ft_myputpixel(g, g->posx, g->posy, 0x00FFFFFF);
-}
-
 void	ft_minimap(t_general *g)
 {
 	g->img = mlx_new_image(g->mlx, g->winw, g->winh);
 	g->addr = mlx_get_data_addr(g->img, &g->bpp, &g->linelenght, &g->endian);
 	ft_drawgrid(g);
-	ft_drawplayer(g);
+	ft_myputpixel(g, g->posx, g->posy, 0x00FF0000);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 22:38:43 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:00:30 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,21 @@ bool	ft_validtale(t_general *g, size_t xn, size_t yn)
 
 void	ft_move(t_general *g)
 {
-	ft_eraseplayer(g);
-	if (g->ka && ft_validtale(g, g->posx - 1, g->posy))
-		g->posx--;
-	if (g->kd && ft_validtale(g, g->posx + 1, g->posy))
-		g->posx++;
-	if (g->kw && ft_validtale(g, g->posx, g->posy - 1))
-		g->posy--;
-	if (g->ks && ft_validtale(g, g->posx, g->posy + 1))
-		g->posy++;
-	ft_drawplayer(g);
+	ft_myputpixel(g, g->posx, g->posy, 0x00FFFFFF);
+	ft_drawray(g, 0x00FFFFFF);
+	if (g->ka)
+		g->ang -= (g->span * (MPI / 180));
+	if (g->kd)
+		g->ang += (g->span * (MPI / 180));
+	if ((g->kw || g->ks) && ft_validtale(g,
+			g->posx + g->advdir * (cos(g->ang) * g->spav),
+			g->posy + g->advdir * (sin(g->ang) * g->spav)))
+	{
+		g->posx += (g->advdir * cos(g->ang) * g->spav);
+		g->posy += (g->advdir * sin(g->ang) * g->spav);
+	}
+	ft_drawray(g, 0x0000FF00);
+	ft_myputpixel(g, g->posx, g->posy, 0x00FF0000);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }
 

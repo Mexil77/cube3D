@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 22:22:57 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:06:04 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 
 # ifndef FACTOR
 #  define FACTOR 50
+# endif
+# ifndef MPI
+#  define MPI 3.14159265358979323846
 # endif
 
 typedef struct s_general
@@ -54,7 +57,12 @@ typedef struct s_general
 	bool	ka;
 	bool	ks;
 	bool	kd;
+	int		advdir;
+	int		rot;
 	size_t	frame;
+	float	ang;
+	int		spav;
+	int		span;
 }	t_general;
 
 typedef struct s_raycast
@@ -111,14 +119,14 @@ void	ft_myputpixel(t_general *g, int x, int y, int color);
 void	ft_drawline(t_general *g, int x, int start, int end);
 void	ft_drawsquare(t_general *g, size_t x, size_t y, int color);
 int		ft_getcolor(int t, int r, int g, int b);
+void	ft_drawray(t_general *g, int color);
 
 /* Minimap */
 void	ft_minimap(t_general *g);
-void	ft_drawplayer(t_general *g);
-void	ft_eraseplayer(t_general *g);
 
 /* Game */
 int		ft_inigame(t_general *g);
+bool	ft_validtale(t_general *g, size_t xn, size_t yn);
 
 /* main */
 void	ft_printgeneral(t_general *g);
