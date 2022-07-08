@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/07 20:59:32 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/08 10:51:47 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	ft_window(t_general *g);
 
 /* Draw */
 void	ft_myputpixel(t_general *g, int x, int y, int color);
-void	ft_drawline(t_general *g, int x, int start, int end);
 void	ft_drawsquare(t_general *g, size_t x, size_t y, int color);
 int		ft_getcolor(int t, int r, int g, int b);
 void	ft_drawray(t_general *g, int ang, int color);

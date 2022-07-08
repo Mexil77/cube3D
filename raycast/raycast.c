@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:36 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/30 15:29:39 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:15:06 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_raycast(t_general *g)
 		else
 			ray.prep_wall_dist = ray.side_dist_y - ray.delta_dist_y;
 		ft_ray_lenght(g, &ray);
-		ft_drawline(g, x, ray.draw_start, ray.draw_end);
+		// ft_drawline(g, x, ray.draw_start, ray.draw_end);
 		printf("x: %zu\n", x);
 		ft_printraycast(&ray);
 	}

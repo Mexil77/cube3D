@@ -6,25 +6,11 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:46:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/07 20:59:07 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:46:13 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
-
-void	ft_drawline(t_general *g, int x, int start, int end)
-{
-	int		color;
-	int		i;
-
-	color = 3000;
-	i = start - 1;
-	while (++i <= end)
-	{
-		printf("i: %d\n", i);
-		ft_myputpixel(g, x, i, color);
-	}
-}
 
 int	ft_getcolor(int t, int r, int g, int b)
 {
@@ -56,17 +42,17 @@ void	ft_myputpixel(t_general *g, int x, int y, int color)
 void	ft_drawray(t_general *g, int ang, int color)
 {
 	size_t	i;
-	int		xd;
-	int		yd;
+	size_t	xd;
+	size_t	yd;
 
 	xd = g->posx + g->advdir * cos(ft_torad(ang)) * 1;
 	yd = g->posy + g->advdir * sin(ft_torad(ang)) * 1;
-	i = 1;
-	while (ft_validtale(g, xd, yd) && ++i < g->winw)
+	i = 0;
+	while (++i && ft_validtale(g, xd, yd))
 	{
+		ft_myputpixel(g, xd, yd, color);
 		xd = g->posx + cos(ft_torad(ang)) * i;
 		yd = g->posy + sin(ft_torad(ang)) * i;
-		ft_myputpixel(g, xd, yd, color);
 	}
 }
 
