@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:42:01 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/11 12:33:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:22:49 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	ft_closewindow(t_general *g)
 
 float	ft_torad(float grad)
 {
-	return (grad * MPI / 180);
+	return (grad * RADGR);
 }

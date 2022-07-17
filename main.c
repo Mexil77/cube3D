@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/07 14:10:09 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:31:53 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ int	ft_keypress(int keycode, t_general *g)
 
 int	ft_keyrelease(int keycode, t_general *g)
 {
-	if (keycode == 53)
-		ft_closewindow(g);
-	else if (keycode == 13)
+	if (keycode == 13)
 		g->kw = false;
 	else if (keycode == 0)
 		g->ka = false;

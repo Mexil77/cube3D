@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/14 14:01:40 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/17 18:26:38 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # endif
 # ifndef MPI
 #  define MPI 3.14159265358979323846
+# endif
+# ifndef RADGR
+#  define RADGR 0.01745329251
 # endif
 
 typedef struct s_general
@@ -89,6 +92,14 @@ typedef struct s_raycast
 	bool	hit;
 	bool	side;
 }	t_raycast;
+
+typedef struct	s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
 
 /* Parse */
 void	ft_parsemap(t_general *g, char *map);

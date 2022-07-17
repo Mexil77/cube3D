@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:46:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/14 14:17:37 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/17 18:22:43 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,22 @@ void	ft_myputpixel(t_general *g, int x, int y, int color)
 
 void	ft_drawray(t_general *g, float ang, int color)
 {
-	size_t	i;
 	size_t	xd;
 	size_t	yd;
-
-	xd = g->posx + g->advdir * cos(ft_torad(ang));
-	yd = g->posy + g->advdir * sin(ft_torad(ang));
-	i = 0;
-	while (++i && ft_validtale(g, xd, yd))
+	int		steps;
+	
+	xd = g->posx;
+	yd = g->posy;
+	steps = 0;
+	while (++steps <= 200)
 	{
+		xd = g->posx + steps * cos(ft_torad(ang));
+		if (!ft_validtale(g, xd, yd))
+			break ;
+		yd = g->posy + steps * sin(ft_torad(ang));
+		if (!ft_validtale(g, xd, yd))
+			break ;
 		ft_myputpixel(g, xd, yd, color);
-		xd = g->posx + cos(ft_torad(ang)) * i;
-		yd = g->posy + sin(ft_torad(ang)) * i;
 	}
 }
 
@@ -65,13 +69,15 @@ void	ft_drawfan(t_general *g, int color)
 	float	ang;
 	float	rangfan;
 	size_t	numrays;
+	double	increment;
 
 	numrays = -1;
-	rangfan = 30;
+	rangfan = 60;
 	ang = g->ang - rangfan / 2;
+	increment = rangfan / 1080;
 	while (++numrays < 1080)
 	{
 		ft_drawray(g, ang, color);
-		ang += (rangfan / 1080);
+		ang += increment;
 	}
 }
