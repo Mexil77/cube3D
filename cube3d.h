@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/08 10:51:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:01:40 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int		ft_closeredcros(t_general *g);
 /* Utils 2 */
 void	ft_printraycast(t_raycast *r);
 void	ft_closewindow(t_general *g);
-float	ft_torad(int grad);
+float	ft_torad(float grad);
 
 /* Validations */
 void	ft_getcaracterpos(t_general *g);
@@ -119,7 +119,7 @@ void	ft_window(t_general *g);
 void	ft_myputpixel(t_general *g, int x, int y, int color);
 void	ft_drawsquare(t_general *g, size_t x, size_t y, int color);
 int		ft_getcolor(int t, int r, int g, int b);
-void	ft_drawray(t_general *g, int ang, int color);
+void	ft_drawray(t_general *g, float ang, int color);
 void	ft_drawfan(t_general *g, int color);
 
 /* Minimap */
@@ -127,7 +127,7 @@ void	ft_minimap(t_general *g);
 
 /* Game */
 int		ft_inigame(t_general *g);
-bool	ft_validtale(t_general *g, size_t xn, size_t yn);
+bool	ft_validtale(t_general *g, float xn, float yn);
 
 /* main */
 void	ft_printgeneral(t_general *g);

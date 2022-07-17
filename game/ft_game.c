@@ -6,32 +6,29 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/08 11:37:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:29:27 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-bool	ft_validtale(t_general *g, size_t xn, size_t yn)
+bool	ft_validtale(t_general *g, float xn, float yn)
 {
 	size_t	x;
 	size_t	y;
 
 	x = xn / FACTOR;
 	y = yn / FACTOR;
-	if (g->map[y][x] == '1' || g->map[y][x] == ' ')
+	if (g->map[y][x] == '1')
 		return (false);
 	return (true);
 }
 
-void	ft_move(t_general *g)
+void	ft_keyaction(t_general *g)
 {
 	int	xadd;
 	int	yadd;
 
-	ft_myputpixel(g, g->posx, g->posy, 0x00FFFFFF);
-	ft_drawfan(g, 0x00FFFFFF);
-	// ft_drawray(g, g->ang, 0x00FFFFFF);
 	if (g->ka)
 		g->ang = (g->ang - g->span) % 360;
 	if (g->kd)
@@ -45,7 +42,13 @@ void	ft_move(t_general *g)
 		g->posx += xadd;
 		g->posy += yadd;
 	}
-	// ft_drawray(g, g->ang, 0x0000FF00);
+}
+
+void	ft_move(t_general *g)
+{
+	ft_myputpixel(g, g->posx, g->posy, 0x00FFFFFF);
+	ft_drawfan(g, 0x00FFFFFF);
+	ft_keyaction(g);
 	ft_drawfan(g, 0x0000FF00);
 	ft_myputpixel(g, g->posx, g->posy, 0x00FF0000);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);

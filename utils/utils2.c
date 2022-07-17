@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:42:01 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/07 20:23:58 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/11 12:33:34 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_closewindow(t_general *g)
 	exit(0);
 }
 
-float	ft_torad(int grad)
+float	ft_torad(float grad)
 {
 	return (grad * MPI / 180);
 }

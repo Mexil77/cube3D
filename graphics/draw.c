@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:46:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/08 11:46:13 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:17:37 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ void	ft_myputpixel(t_general *g, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	ft_drawray(t_general *g, int ang, int color)
+/* void	ft_drawline()
+{
+} */
+
+void	ft_drawray(t_general *g, float ang, int color)
 {
 	size_t	i;
 	size_t	xd;
 	size_t	yd;
 
-	xd = g->posx + g->advdir * cos(ft_torad(ang)) * 1;
-	yd = g->posy + g->advdir * sin(ft_torad(ang)) * 1;
+	xd = g->posx + g->advdir * cos(ft_torad(ang));
+	yd = g->posy + g->advdir * sin(ft_torad(ang));
 	i = 0;
 	while (++i && ft_validtale(g, xd, yd))
 	{
@@ -58,9 +62,16 @@ void	ft_drawray(t_general *g, int ang, int color)
 
 void	ft_drawfan(t_general *g, int color)
 {
-	int	ang;
+	float	ang;
+	float	rangfan;
+	size_t	numrays;
 
-	ang = g->ang - 31;
-	while (++ang < g->ang + 30)
+	numrays = -1;
+	rangfan = 30;
+	ang = g->ang - rangfan / 2;
+	while (++numrays < 1080)
+	{
 		ft_drawray(g, ang, color);
+		ang += (rangfan / 1080);
+	}
 }

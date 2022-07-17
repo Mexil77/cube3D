@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 16:06:10 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:51:52 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*ft_fillline(t_general *g, char *line)
 		if (i < ft_strlen(line) && line[i] != '\n')
 			mapline[i] = line[i];
 		else
-			mapline[i] = ' ';
+			mapline[i] = '1';
 	}
 	return (mapline);
 }
