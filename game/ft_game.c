@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/17 18:27:01 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/28 21:21:00 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,24 @@ bool	ft_validtale(t_general *g, float xn, float yn)
 	size_t	x;
 	size_t	y;
 
-	x = xn / FACTOR;
-	y = yn / FACTOR;
+	x = xn / TILE_SIZE;
+	y = yn / TILE_SIZE;
 	if (g->map[y][x] == '1')
 		return (false);
 	return (true);
 }
 
-void	ft_keyaction(t_general *g)
+char	tile_value(t_general *g, int x_coord, int y_coord)
+{
+	int	x;
+	int	y;
+
+	x = x_coord / TILE_SIZE;
+	y = y_coord / TILE_SIZE;
+	return (g->map[y][x]);
+}
+
+void	calc_position(t_general *g)
 {
 	int	xnew;
 	int	ynew;
@@ -32,47 +42,48 @@ void	ft_keyaction(t_general *g)
 	int	yprog;
 	int	steps;
 
-	if (g->ka)
-		g->ang = (g->ang - g->span) % 360;
-	if (g->kd)
-		g->ang = (g->ang + g->span) % 360;
-	if (g->ang < 0)
-		g->ang += 360;
-	if (!g->kw && !g->ks)
+	if (g->rotate_dir != 0)
+		g->ang = parse_angle(g->ang + g->rotate_dir * g->rotate_speed);
+	if (!g->move_dir)
 		return ;
 	xprog = g->posx;
 	yprog = g->posy;
 	steps = 0;
-	while (++steps <= g->spav)
+	while (++steps <= g->move_speed)
 	{
-		xnew = g->posx + g->advdir * (cos(ft_torad(g->ang)) * steps);
-		if (ft_validtale(g, xnew, yprog))
+		xnew = g->posx + g->move_dir * (cos(ft_torad(g->ang)) * steps);
+		if (tile_value(g, xnew, yprog) != '1')
 			xprog = xnew;
-		ynew = g->posy + g->advdir * (sin(ft_torad(g->ang)) * steps);
-		if (ft_validtale(g, xprog, ynew))
+		ynew = g->posy + g->move_dir * (sin(ft_torad(g->ang)) * steps);
+		if (tile_value(g, xprog, ynew) != '1')
 			yprog = ynew;
 	}
 	g->posx = xprog;
 	g->posy = yprog;
 }
 
+void	new_frame(t_general *g)
+{
+	t_img	frame;
+
+	frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
+	frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
+	calc_position(g); // CALCULAMOS EL MOVIMIENTO
+	draw_map(g, &frame, 0, 0); // DIBUJAMOS EL MINIMAPA
+	draw_player(&frame, g->posx, g->posy, 0x00FF0000);
+	ft_drawfan(g, 0x0000FF00);
+	mlx_put_image_to_window(g->mlx, g->win, frame.img, 0, 0);
+}
+
 void	ft_move(t_general *g)
 {
 	ft_myputpixel(g, g->posx, g->posy, 0x00FFFFFF);
 	ft_drawfan(g, 0x00FFFFFF);
-	ft_keyaction(g);
+	//ft_keyaction(g);
 	ft_drawfan(g, 0x0000FF00);
 	ft_myputpixel(g, g->posx, g->posy, 0x00FF0000);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
-}
-
-void	ft_pov(t_general *gen) 
-{
-	t_img	img;
-
-	img.img = mlx_new_image(gen->mlx, gen->map_width, gen->map_height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	
+	while(1);
 }
 
 int	ft_inigame(t_general *g)
@@ -81,6 +92,6 @@ int	ft_inigame(t_general *g)
 		g->frame = 0;
 	g->frame++;
 	if (g->frame % 5 == 0)
-		ft_pov(g);
+		new_frame(g);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/17 17:31:53 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/28 21:07:56 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	ft_printgeneral(t_general *g)
 	printf("f : %s\n", g->f);
 	printf("c : %s\n", g->c);
 	printf("pos : %c\n", g->pos);
-	printf("posx : %zu\n", g->posx);
-	printf("posy : %zu\n", g->posy);
-	printf("w : %zu\n", g->w);
-	printf("h : %zu\n", g->h);
+	printf("posx : %d\n", g->posx);
+	printf("posy : %d\n", g->posy);
+	printf("w : %zu\n", g->map_width);
+	printf("h : %zu\n", g->map_height);
 	i = -1;
-	while (g->map && g->map[++i] && i < g->h)
+	while (g->map && g->map[++i] && i < g->map_height)
 		printf("%s\n", g->map[i]);
 }
 
@@ -46,48 +46,48 @@ void	ft_leaks(void)
 
 void	ft_inistruct(t_general *g)
 {
-	g->winw = g->w * FACTOR;
-	g->winh = g->h * FACTOR;
+	g->window_width = g->map_width * TILE_SIZE;
+	g->window_height = g->map_height * TILE_SIZE;
 	g->game = true;
-	g->frame = 0;
+	g->frame = 0; //DUDA: POR QUÉ ESTO? YA ES CERO
 	g->ang = 0;
-	g->spav = 3;
-	g->span = 4;
+	g->move_speed = 4;
+	g->rotate_speed = 4;
 }
 
 int	ft_keypress(int keycode, t_general *g)
 {
 	if (keycode == 53)
 		ft_closewindow(g);
-	else if (keycode == 13)
-		g->kw = true;
-	else if (keycode == 0)
-		g->ka = true;
-	else if (keycode == 1)
-		g->ks = true;
-	else if (keycode == 2)
-		g->kd = true;
+	// else if (keycode == 13)
+	// 	g->kw = true;
+	// else if (keycode == 0)
+	// 	g->ka = true;
+	// else if (keycode == 1)
+	// 	g->ks = true;
+	// else if (keycode == 2)
+	// 	g->kd = true;
 	if (keycode == 13)
-		g->advdir = 1;
+		g->move_dir = 1;
 	else if (keycode == 0)
-		g->rot = 1;
+		g->rotate_dir = -1;
 	else if (keycode == 1)
-		g->advdir = -1;
+		g->move_dir = -1;
 	else if (keycode == 2)
-		g->rot = -1;
+		g->rotate_dir = 1;
 	return (0);
 }
 
 int	ft_keyrelease(int keycode, t_general *g)
 {
 	if (keycode == 13)
-		g->kw = false;
+		g->move_dir = 0;
 	else if (keycode == 0)
-		g->ka = false;
+		g->rotate_dir = 0;
 	else if (keycode == 1)
-		g->ks = false;
+		g->move_dir = 0;
 	else if (keycode == 2)
-		g->kd = false;
+		g->rotate_dir = 0;
 	return (0);
 }
 
@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	// atexit(ft_leaks);
-	general = (t_general *)ft_calloc(sizeof(t_general), 1);
+	general = (t_general *)ft_calloc(sizeof(t_general), 1); // DUDA: POR QUÉ ALOCAR NUESTRA VARIABLE GENERAL
 	printf("mapa : %s\n", argv[1]);
 	ft_parsemap(general, argv[1]);
 	ft_inistruct(general);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:36 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/08 11:15:06 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:49:25 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_base_calc(t_general *g, t_raycast *r, size_t x)
 {
-	r->camera_x = 2 * x / (double)g->w - 1;
+	r->camera_x = 2 * x / (double)g->map_width - 1;
 	r->raydir_x = r->dir_x + r->planex * r->camera_x;
 	r->raydir_y = r->dir_y + r->planey * r->camera_x;
 	r->map_x = (int)g->posx;
@@ -67,13 +67,13 @@ void	ft_find_hit(t_general *g, t_raycast *r)
 
 void	ft_ray_lenght(t_general *g, t_raycast *r)
 {
-	r->line_height = (int)(g->h / r->prep_wall_dist);
-	r->draw_start = -r->line_height / 2 + g->h / 2;
+	r->line_height = (int)(g->map_height / r->prep_wall_dist);
+	r->draw_start = -r->line_height / 2 + g->map_height / 2;
 	if (r->draw_start < 0)
 		r->draw_start = 0;
-	r->draw_end = r->line_height / 2 + g->h / 2;
+	r->draw_end = r->line_height / 2 + g->map_height / 2;
 	if (r->draw_end < 0)
-		r->draw_end = g->h - 1;
+		r->draw_end = g->map_height - 1;
 }
 
 void	ft_raycast(t_general *g)
@@ -86,7 +86,7 @@ void	ft_raycast(t_general *g)
 	ray.planex = 0;
 	ray.planey = 0.66;
 	x = -1;
-	while (++x < g->w)
+	while (++x < g->map_width)
 	{
 		ft_base_calc(g, &ray, x);
 		ft_step_condition(&ray, g);

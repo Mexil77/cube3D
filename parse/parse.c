@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/11 17:51:52 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:48:54 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ void	ft_countmap(t_general *g, char *map)
 	{
 		if (ft_ismap(line))
 		{
-			g->h++;
+			g->map_height++;
 			if (ft_strlen(line) - 1 > longest)
 				longest = ft_strlen(line) - 1;
 		}
 		free (line);
 		line = get_next_line(fd);
 	}
-	g->w = longest;
+	g->map_width = longest;
 	close(fd);
 }
 
@@ -56,11 +56,11 @@ char	*ft_fillline(t_general *g, char *line)
 	char	*mapline;
 	size_t	i;
 
-	mapline = ft_calloc(sizeof(char), g->w + 1);
+	mapline = ft_calloc(sizeof(char), g->map_width + 1);
 	if (!mapline)
 		return (NULL);
 	i = -1;
-	while (++i < g->w)
+	while (++i < g->map_width)
 	{
 		if (i < ft_strlen(line) && line[i] != '\n')
 			mapline[i] = line[i];
@@ -79,7 +79,7 @@ void	ft_fillmap(t_general *g, char *map)
 	fd = open(map, O_RDWR);
 	if (fd < 0)
 		return ;
-	g->map = ft_calloc(sizeof(char *), g->h + 1);
+	g->map = ft_calloc(sizeof(char *), g->map_height + 1);
 	if (!g->map)
 		return ;
 	i = 0;

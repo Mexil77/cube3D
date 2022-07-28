@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:39:36 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/14 16:24:55 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:02:33 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 float	ft_distxini(t_general *g, float ang)
 {
 	if (g->ang > 90 && g->ang < 270)
-		return (((g->posx % FACTOR) + 1) / cos(ft_torad(ang)));
+		return (((g->posx % TILE_SIZE) + 1) / cos(ft_torad(ang)));
 	else
-		return ((FACTOR - (g->posx % FACTOR)) / cos(ft_torad(ang)));
+		return ((TILE_SIZE - (g->posx % TILE_SIZE)) / cos(ft_torad(ang)));
 }
 
 void	ft_calcray(t_general *g, float ang, int color)

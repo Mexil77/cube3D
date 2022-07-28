@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_window.c                                        :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 17:29:34 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/26 20:52:12 by vguttenb         ###   ########.fr       */
+/*   Created: 2022/07/28 21:11:58 by vguttenb          #+#    #+#             */
+/*   Updated: 2022/07/28 21:15:46 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-void	ft_window(t_general *g)
+void	draw_player(t_img *img, int x_pos, int y_pos, int color)
 {
-	g->mlx = mlx_init();
-	g->win = mlx_new_window(g->mlx, g->window_width, g->window_height, "cube3D");
-	if (!g->win)
-		ft_error("Error de ventana", g);
-	mlx_hook(g->win, 17, 1L << 17, ft_closeredcros, g);
+	int	x_draw;
+	int	y_draw;
+
+	y_draw = y_pos - 2;
+	while (++y_draw < y_pos + 2)
+	{
+		x_draw = x_pos - 2;
+		while (++x_draw < x_pos + 2)
+			draw_pixel(img, x_draw, y_draw, color);
+	}
 }
