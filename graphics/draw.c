@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:46:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/26 19:02:09 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:16:48 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,47 +47,47 @@ void	ft_myputpixel_2(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	ft_drawray(t_general *g, float ang, int color)
-{
-	int	prog_x;
-	int	prog_y;
-	int	steps;
+// void	ft_drawray(t_general *g, float ang, int color)
+// {
+// 	int	prog_x;
+// 	int	prog_y;
+// 	int	steps;
 	
-	prog_x = g->posx;
-	prog_y = g->posy;
-	steps = 0;
-	while (++steps <= 200)
-	{
-		prog_x = g->posx + steps * cos(ft_torad(ang));
-		if (!ft_validtale(g, prog_x, prog_y)) {
-			printf("I've encountered something at %d steps\n", steps);
-			write(STDERR_FILENO, "AH!\n", 4);
-			return ;
-		}
-		prog_y = g->posy + steps * sin(ft_torad(ang));
-		if (!ft_validtale(g, prog_x, prog_y)) {
-			printf("I've encountered something at %d steps\n", steps);
-			write(STDERR_FILENO, "AH!\n", 4);
-			return ;
-		}
-		ft_myputpixel(g, prog_x, prog_y, color);
-	}
-	printf("I've encountered nothing\n");
-	write(STDERR_FILENO, "AH!\n", 4);
-}
+// 	prog_x = g->posx;
+// 	prog_y = g->posy;
+// 	steps = 0;
+// 	while (++steps <= 200)
+// 	{
+// 		prog_x = g->posx + steps * cos(ft_torad(ang));
+// 		if (!ft_validtale(g, prog_x, prog_y)) {
+// 			printf("I've encountered something at %d steps\n", steps);
+// 			write(STDERR_FILENO, "AH!\n", 4);
+// 			return ;
+// 		}
+// 		prog_y = g->posy + steps * sin(ft_torad(ang));
+// 		if (!ft_validtale(g, prog_x, prog_y)) {
+// 			printf("I've encountered something at %d steps\n", steps);
+// 			write(STDERR_FILENO, "AH!\n", 4);
+// 			return ;
+// 		}
+// 		ft_myputpixel(g, prog_x, prog_y, color);
+// 	}
+// 	printf("I've encountered nothing\n");
+// 	write(STDERR_FILENO, "AH!\n", 4);
+// }
 
-void	ft_drawfan(t_general *g, int color)
-{
-	float	ang;
-	size_t	numrays;
-	double	increment;
+// void	ft_drawfan(t_general *g, int color)
+// {
+// 	float	ang;
+// 	size_t	numrays;
+// 	double	increment;
 
-	numrays = -1;
-	ang = g->ang - PLAYER_FOV / 2;
-	increment = PLAYER_FOV / 60;
-	while (++numrays < 60)
-	{
-		ft_drawray(g, ang, color);
-		ang += increment;
-	}
-}
+// 	numrays = -1;
+// 	ang = g->ang - PLAYER_FOV / 2;
+// 	increment = PLAYER_FOV / 60;
+// 	while (++numrays < 60)
+// 	{
+// 		ft_drawray(g, ang, color);
+// 		ang += increment;
+// 	}
+// }

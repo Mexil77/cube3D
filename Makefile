@@ -6,18 +6,18 @@
 #    By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2022/07/28 21:18:53 by vguttenb         ###   ########.fr        #
+#    Updated: 2022/07/31 18:14:15 by vguttenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	main.c														\
-			parse/parse.c parse/validations.c							\
+			parse/parse_map.c parse/validations.c						\
 			utils/utils.c utils/utils2.c utils/ft_error.c				\
-			utils/parse_angle.c											\
+			utils/parse_angle.c utils/tile_value.c						\
 			raycast/raycast.c											\
 			graphics/ft_window.c graphics/draw.c graphics/ft_minimap.c	\
 			graphics/draw_pixel.c graphics/draw_map.c					\
-			graphics/draw_player.c										\
+			graphics/draw_player.c graphics/draw_fan.c					\
 			game/ft_game.c
 LIBFT	=	Libft/libft.a
 OBJS	=	${SRCS:.c=.o}

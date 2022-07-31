@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/26 19:49:05 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:15:16 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	ft_getcaracterpos(t_general *g)
 				|| g->map[i][j] == 'W' || g->map[i][j] == 'E')
 			{
 				g->pos = g->map[i][j];
-				g->posx = j * TILE_SIZE + TILE_SIZE / 2;
-				g->posy = i * TILE_SIZE + TILE_SIZE / 2;
+				g->posx = (float)(j * TILE_SIZE + TILE_SIZE / 2);
+				g->posy = (float)(i * TILE_SIZE + TILE_SIZE / 2);
 			}
 		}
 	}

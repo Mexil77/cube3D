@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/07/25 18:10:31 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:23:25 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	project_ray(t_general *g, float ang, int x)
 	int	prog_y;
 	int	steps;
 	
-	prog_x = g->posx;
-	prog_y = g->posy;
+	prog_x = (int)g->posx;
+	prog_y = (int)g->posy;
 	steps = 0;
 	printf("I have been summoned for angle %f", ang);
 	while (++steps <= 200)

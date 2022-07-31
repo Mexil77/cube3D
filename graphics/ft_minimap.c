@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 11:46:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/26 19:50:08 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:24:23 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	ft_minimap(t_general *g)
 	g->img = mlx_new_image(g->mlx, g->window_width, g->window_height);
 	g->addr = mlx_get_data_addr(g->img, &g->bpp, &g->linelenght, &g->endian);
 	ft_drawgrid(g);
-	ft_myputpixel(g, g->posx, g->posy, 0x00FF0000);
+	ft_myputpixel(g, (int)g->posx, (int)g->posy, 0x00FF0000);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }

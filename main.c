@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/28 21:07:56 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:58:45 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_printgeneral(t_general *g)
 	printf("f : %s\n", g->f);
 	printf("c : %s\n", g->c);
 	printf("pos : %c\n", g->pos);
-	printf("posx : %d\n", g->posx);
-	printf("posy : %d\n", g->posy);
+	printf("posx : %f\n", g->posx);
+	printf("posy : %f\n", g->posy);
 	printf("w : %zu\n", g->map_width);
 	printf("h : %zu\n", g->map_height);
 	i = -1;
@@ -106,7 +106,7 @@ int	main(int argc, char **argv)
 	ft_parsemap(general, argv[1]);
 	ft_inistruct(general);
 	ft_window(general);
-	ft_minimap(general);
+	//ft_minimap(general);
 	// ft_printgeneral(general);
 	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
 	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);

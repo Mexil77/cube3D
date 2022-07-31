@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/26 19:48:54 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:14:33 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-bool	ft_ismap(char *line)
+static bool	ft_ismap(char *line)
 {
 	size_t	i;
 
@@ -25,7 +25,7 @@ bool	ft_ismap(char *line)
 	return (true);
 }
 
-void	ft_countmap(t_general *g, char *map)
+static void	ft_countmap(t_general *g, char *map)
 {
 	int		fd;
 	size_t	longest;
@@ -51,7 +51,7 @@ void	ft_countmap(t_general *g, char *map)
 	close(fd);
 }
 
-char	*ft_fillline(t_general *g, char *line)
+static char	*ft_fillline(t_general *g, char *line)
 {
 	char	*mapline;
 	size_t	i;
@@ -70,7 +70,7 @@ char	*ft_fillline(t_general *g, char *line)
 	return (mapline);
 }
 
-void	ft_fillmap(t_general *g, char *map)
+static void	ft_fillmap(t_general *g, char *map)
 {
 	int		fd;
 	size_t	i;

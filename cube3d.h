@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/28 21:16:06 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:11:35 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 #define WALL_COLOR 0x00000000
 //#define WALL_COLOR 0x00C0C0C0
 #define FLOOR_COLOR 0x00C0C0C0
+#define PLAYER_COLOR 0x000000FF
+#define SIGHT_COLOR 0x00FFFFFF
 
 typedef struct	s_img {
 	void	*img;
@@ -73,8 +75,8 @@ typedef struct s_general
 	int		endian;
 	size_t	map_width;
 	size_t	map_height;
-	int		posx;
-	int		posy;
+	float	posx;
+	float	posy;
 	bool	game;
 	bool	kw;
 	bool	ka;
@@ -125,6 +127,7 @@ void	ft_error(char *str, t_general *g);
 void	ft_freeall(t_general *g);
 int		ft_closeredcros(t_general *g);
 int		parse_angle(int angle);
+char	tile_value(t_general *g, int x_coord, int y_coord);
 
 /* Utils 2 */
 void	ft_printraycast(t_raycast *r);
@@ -150,6 +153,7 @@ void	ft_drawfan(t_general *g, int color);
 void	draw_map(t_general *g, t_img *img, int x, int y);
 void	draw_player(t_img *img, int x_pos, int y_pos, int color);
 void	draw_pixel(t_img *img, int x, int y, int color);
+void	draw_fan(t_img *img, t_general *g);
 
 /* Minimap */
 void	ft_minimap(t_general *g);
