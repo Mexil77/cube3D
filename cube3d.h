@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/31 18:11:35 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/01 20:30:29 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@
 #  define RADGR 0.01745329251
 # endif
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGTH 720
+# define WINDOW_WIDTH 1650
+# define WINDOW_HEIGTH 700
 
 # define PLAYER_FOV 60
+# define PLAYER_SIGHT 200
 
 # define TILE_HEIGHT 500
 
@@ -154,6 +155,7 @@ void	draw_map(t_general *g, t_img *img, int x, int y);
 void	draw_player(t_img *img, int x_pos, int y_pos, int color);
 void	draw_pixel(t_img *img, int x, int y, int color);
 void	draw_fan(t_img *img, t_general *g);
+void	draw_pov(t_img *img, t_general *g);
 
 /* Minimap */
 void	ft_minimap(t_general *g);

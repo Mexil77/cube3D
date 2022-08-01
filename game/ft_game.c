@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/31 18:35:22 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:35:35 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,26 @@ void	new_frame(t_general *g)
 // 	while(1);
 // }
 
+void	new_pov(t_general *g)
+{
+	t_img	frame;
+
+	frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
+	frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
+	draw_pov(&frame, g);
+	mlx_put_image_to_window(g->mlx, g->win, frame.img, 0, WINDOW_HEIGTH);
+}
+
 int	ft_inigame(t_general *g)
 {
 	if (g->frame == 1000)
 		g->frame = 0;
 	g->frame++;
 	if (g->frame % 5 == 0)
+	{
 		new_frame(g);
+		new_pov(g);
+	}
 	return (0);
 }
 

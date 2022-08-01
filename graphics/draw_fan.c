@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 13:33:40 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/07/31 20:25:05 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/01 20:13:50 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	draw_ray(t_img *img, t_general *g, float ang)
 	if (ang > 180)
 		y_newtile = TILE_SIZE - 1;
 	steps = 0;
-	while (++steps <= 200)
+	while (1)
 	{
 		//prog_x = g->posx + steps * cos(ft_torad(ang));
 		prog_x += x_increment;

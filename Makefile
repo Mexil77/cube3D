@@ -6,7 +6,7 @@
 #    By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2022/07/31 18:14:15 by vguttenb         ###   ########.fr        #
+#    Updated: 2022/08/01 19:36:34 by vguttenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS	=	main.c														\
 			graphics/ft_window.c graphics/draw.c graphics/ft_minimap.c	\
 			graphics/draw_pixel.c graphics/draw_map.c					\
 			graphics/draw_player.c graphics/draw_fan.c					\
+			graphics/draw_pov.c											\
 			game/ft_game.c
 LIBFT	=	Libft/libft.a
 OBJS	=	${SRCS:.c=.o}
