@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/01 20:57:14 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:37:55 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,16 @@ static void		draw_column(t_img *img, float dist, int x, float angle)
 	int	wall_bottom;
 	int	y_drawn;
 
-	angle = parse_angle(angle);
+	//angle = parse_angle(angle);
+	if (angle < 360)
+		angle += 360;
 	// if (dist >= 1)
 	// 	dist *= cos(ft_torad(angle));
+	printf("%dth ray: My dist is %f, my angle cos is %f and their product is %f\n", x, dist, cos(ft_torad(angle)), (dist * cos(ft_torad(angle))));
+	
 	wall_height = 0;
 	if (dist >= 1)
-		wall_height = TILE_SIZE * WINDOW_HEIGTH / (int)(dist * cos(ft_torad(angle)));
+		wall_height = TILE_SIZE * WINDOW_HEIGTH / (int)round(dist * cos(ft_torad(angle)));
 	if (wall_height > WINDOW_HEIGTH || dist < 1)
 		wall_height = WINDOW_HEIGTH;
 	wall_top = WINDOW_HEIGTH / 2 - wall_height / 2;

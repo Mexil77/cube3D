@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/01 19:35:35 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:29:55 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ int	ft_inigame(t_general *g)
 
 // int	ft_inigame(t_general *g)
 // {
-// 	if (g->frame == 1000) {
+// 	if (g->frame == 10000) {
 // 		new_frame(g);
+// 		new_pov(g);
 // 		g->frame = 0;
 // 	}
 // 	g->frame++;
