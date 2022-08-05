@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:46:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/31 18:16:48 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/05 20:28:05 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ int	ft_getcolor(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	ft_drawsquare(t_general *g, size_t x, size_t y, int color)
-{
-	size_t	xf;
-	size_t	yf;
+// void	ft_drawsquare(t_general *g, size_t x, size_t y, int color)
+// {
+// 	size_t	xf;
+// 	size_t	yf;
 
-	yf = -1;
-	while (++yf < TILE_SIZE)
-	{
-		xf = -1;
-		while (++xf < TILE_SIZE)
-			ft_myputpixel(g, x + xf, y + yf, color);
-	}
-}
+// 	yf = -1;
+// 	while (++yf < TILE_SIZE)
+// 	{
+// 		xf = -1;
+// 		while (++xf < TILE_SIZE)
+// 			ft_myputpixel(g, x + xf, y + yf, color);
+// 	}
+// }
 
-void	ft_myputpixel(t_general *g, int x, int y, int color)
-{
-	char	*dst;
+// void	ft_myputpixel(t_general *g, int x, int y, int color)
+// {
+// 	char	*dst;
 
-	dst = g->addr + (y * g->linelenght + x * (g->bpp / 8));
-	*(unsigned int *)dst = color;
-}
+// 	dst = g->addr + (y * g->linelenght + x * (g->bpp / 8));
+// 	*(unsigned int *)dst = color;
+// }
 
 void	ft_myputpixel_2(t_img *img, int x, int y, int color)
 {

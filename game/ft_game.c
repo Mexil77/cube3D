@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/02 19:29:55 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/05 20:45:24 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,17 @@ void	calc_position(t_general *g)
 
 void	new_frame(t_general *g)
 {
-	t_img	frame;
+	// t_img	frame;
 
-	frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
-	frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
+	// frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
+	// frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
 	calc_position(g); // CALCULAMOS EL MOVIMIENTO
-	draw_map(g, &frame, 0, 0); // DIBUJAMOS EL MINIMAPA
-	draw_player(&frame, (int)g->posx, (int)g->posy, PLAYER_COLOR);
-	draw_fan(&frame, g);
-	mlx_put_image_to_window(g->mlx, g->win, frame.img, 0, 0);
+	draw_map(g, &g->img_minimap, 0, 0); // DIBUJAMOS EL MINIMAPA
+	draw_player(&g->img_minimap, (int)g->posx, (int)g->posy, PLAYER_COLOR);
+	draw_fan(&g->img_minimap, g);
+	mlx_put_image_to_window(g->mlx, g->win, g->img_minimap.img, 0, 0);
+	draw_pov(g);
+	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, g->window_height);
 }
 
 // void	ft_move(t_general *g)
@@ -80,34 +82,33 @@ void	new_frame(t_general *g)
 
 void	new_pov(t_general *g)
 {
-	t_img	frame;
+	// t_img	frame;
 
-	frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
-	frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
-	draw_pov(&frame, g);
-	mlx_put_image_to_window(g->mlx, g->win, frame.img, 0, WINDOW_HEIGTH);
+	// frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
+	// frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
+	draw_pov(g);
+	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, WINDOW_HEIGTH);
 }
 
-int	ft_inigame(t_general *g)
-{
-	if (g->frame == 1000)
-		g->frame = 0;
-	g->frame++;
-	if (g->frame % 5 == 0)
-	{
-		new_frame(g);
-		new_pov(g);
-	}
-	return (0);
-}
-
-// int	ft_inigame(t_general *g)
+// int	ft_game(t_general *g)
 // {
-// 	if (g->frame == 10000) {
+// 	if (g->frame == 1000)
+// 		g->frame = 0;
+// 	g->frame++;
+// 	if (g->frame % 5 == 0)
+// 	{
 // 		new_frame(g);
 // 		new_pov(g);
-// 		g->frame = 0;
 // 	}
-// 	g->frame++;
 // 	return (0);
 // }
+
+int	ft_game(t_general *g)
+{
+	if (g->frame == 10000) {
+		new_frame(g);
+		g->frame = 0;
+	}
+	g->frame++;
+	return (0);
+}

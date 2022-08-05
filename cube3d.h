@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/01 20:30:29 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/05 20:50:14 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 
 # ifndef TILE_SIZE
-#  define TILE_SIZE 50
+#  define TILE_SIZE 32
 # endif
 # ifndef MPI
 #  define MPI 3.14159265358979323846
@@ -55,12 +55,25 @@ typedef struct	s_img {
 	int		endian;
 }				t_img;
 
+typedef struct	s_minimap
+{
+	//PÍXELES DEL MAPA DESDE LOS QUE VAMOS A EMPEZAR A DIBUJAR
+	double	x_map_start;
+	double	y_map_start;
+
+	//COORDENADAS EN LAS QUE HAY QUE DIBUJAR AL PERSONAJE DENTRO DEL MINIMAP
+	int	x_player;
+	int	y_player;
+
+
+}				t_minimap;
+
 typedef struct s_general
 {
 	void	*mlx;
 	void	*win;
-	size_t	window_height;
-	size_t	window_width;
+	int		window_height;
+	int		window_width;
 	char	**map;
 	char	*tn;
 	char	*ts;
@@ -69,11 +82,11 @@ typedef struct s_general
 	char	*f;
 	char	*c;
 	char	pos;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		linelenght;
-	int		endian;
+	// void	*img;
+	// char	*addr;
+	// int		bpp;
+	// int		linelenght;
+	// int		endian;
 	size_t	map_width;
 	size_t	map_height;
 	float	posx;
@@ -90,7 +103,8 @@ typedef struct s_general
 	int		move_speed;
 	int		rotate_speed;
 	int		projection_dist;
-	struct s_img	*img_pov;
+	struct s_img	img_pov;
+	struct s_img	img_minimap;
 }	t_general;
 
 typedef struct s_raycast
@@ -155,13 +169,13 @@ void	draw_map(t_general *g, t_img *img, int x, int y);
 void	draw_player(t_img *img, int x_pos, int y_pos, int color);
 void	draw_pixel(t_img *img, int x, int y, int color);
 void	draw_fan(t_img *img, t_general *g);
-void	draw_pov(t_img *img, t_general *g);
+void	draw_pov(t_general *g);
 
 /* Minimap */
 void	ft_minimap(t_general *g);
 
 /* Game */
-int		ft_inigame(t_general *g);
+int		ft_game(t_general *g);
 bool	ft_validtale(t_general *g, float xn, float yn);
 
 /* main */
