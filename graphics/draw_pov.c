@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/05 20:46:25 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:28:16 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ static void		draw_column(t_general *g, float dist, int x, float angle)
 	
 	wall_height = 0;
 	if (dist >= 1)
-		wall_height = TILE_SIZE * g->window_height / (int)(dist * cos(ft_torad(angle)));
+		wall_height = TILE_SIZE * WINDOW_HEIGHT / (int)round(dist * cos(ft_torad(angle)));
 	//printf("%04dth ray: My dist is %f, my angle cos is %f and their product is %f so wall_height is %d\n", x, dist, cos(ft_torad(angle)), (dist * cos(ft_torad(angle))), wall_height);
-	if (wall_height > g->window_height || dist < 1)
-		wall_height = g->window_height;
-	wall_top = g->window_height / 2 - wall_height / 2;
+	if (wall_height > WINDOW_HEIGHT || dist < 1)
+		wall_height = WINDOW_HEIGHT;
+	wall_top = WINDOW_HEIGHT / 2 - wall_height / 2;
 	wall_bottom = wall_top + wall_height;
 	y_drawn = 0;
 	while (y_drawn < wall_top)
 		draw_pixel(&g->img_pov, x, y_drawn++, CEILING_COLOR);
 	while (y_drawn < wall_bottom)
 		draw_pixel(&g->img_pov, x, y_drawn++, WALL_COLOR);
-	while (y_drawn < g->window_height)
+	while (y_drawn < WINDOW_HEIGHT)
 		draw_pixel(&g->img_pov, x, y_drawn++, FLOOR_COLOR);
 }
 
@@ -106,9 +106,9 @@ void	draw_pov(t_general *g)
 	if (ang < 0)
 		ang += 360;
 	//printf("My starting angle is %f\n", ang);
-	increment = (float)PLAYER_FOV / g->window_width;
+	increment = (float)PLAYER_FOV / WINDOW_WIDTH;
 	//printf("My increment is %f\n", increment);
-	while (++numrays < g->window_width)
+	while (++numrays < WINDOW_WIDTH)
 	{
 		ang += increment;
 		if (ang >= 360)
@@ -116,6 +116,7 @@ void	draw_pov(t_general *g)
 		//printf("%zuth ray: My angle is %f\n", numrays, ang);
 		cast_ray(g, ang, numrays);
 	}
+	//cast_ray(g, g->ang - PLAYER_FOV / 2, 350);
 	//draw_ray(img, g, g->ang);
 	//while(1);
 }

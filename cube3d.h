@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/05 20:50:14 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:09:45 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 
 # ifndef TILE_SIZE
-#  define TILE_SIZE 32
+#  define TILE_SIZE 64
 # endif
 # ifndef MPI
 #  define MPI 3.14159265358979323846
@@ -33,12 +33,13 @@
 # endif
 
 # define WINDOW_WIDTH 1650
-# define WINDOW_HEIGTH 700
+# define WINDOW_HEIGHT 700
 
 # define PLAYER_FOV 60
 # define PLAYER_SIGHT 200
 
-# define TILE_HEIGHT 500
+# define MINIMAP_SCALE 0.5
+# define MINIMAP_SIZE 160
 
 #define CEILING_COLOR 0x00B3D5E0
 #define WALL_COLOR 0x00000000
@@ -170,6 +171,7 @@ void	draw_player(t_img *img, int x_pos, int y_pos, int color);
 void	draw_pixel(t_img *img, int x, int y, int color);
 void	draw_fan(t_img *img, t_general *g);
 void	draw_pov(t_general *g);
+void	draw_minimap(t_img *img, t_general *g, int x_start, int y_start);
 
 /* Minimap */
 void	ft_minimap(t_general *g);

@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/05 20:45:24 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:20:57 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ void	new_frame(t_general *g)
 	// frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
 	// frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
 	calc_position(g); // CALCULAMOS EL MOVIMIENTO
-	draw_map(g, &g->img_minimap, 0, 0); // DIBUJAMOS EL MINIMAPA
-	draw_player(&g->img_minimap, (int)g->posx, (int)g->posy, PLAYER_COLOR);
-	draw_fan(&g->img_minimap, g);
-	mlx_put_image_to_window(g->mlx, g->win, g->img_minimap.img, 0, 0);
+	// draw_map(g, &g->img_minimap, 0, 0); // DIBUJAMOS EL MINIMAPA
+	// draw_player(&g->img_minimap, (int)g->posx, (int)g->posy, PLAYER_COLOR);
+	// draw_fan(&g->img_minimap, g);
+	// mlx_put_image_to_window(g->mlx, g->win, g->img_minimap.img, 0, 0);
 	draw_pov(g);
-	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, g->window_height);
+	draw_minimap(&g->img_pov, g, 0, 0);
+	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, 0);
 }
 
 // void	ft_move(t_general *g)
@@ -87,7 +88,7 @@ void	new_pov(t_general *g)
 	// frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
 	// frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
 	draw_pov(g);
-	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, WINDOW_HEIGTH);
+	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, WINDOW_HEIGHT);
 }
 
 // int	ft_game(t_general *g)
@@ -95,17 +96,14 @@ void	new_pov(t_general *g)
 // 	if (g->frame == 1000)
 // 		g->frame = 0;
 // 	g->frame++;
-// 	if (g->frame % 5 == 0)
-// 	{
+// 	if (g->frame % 20 == 0)
 // 		new_frame(g);
-// 		new_pov(g);
-// 	}
 // 	return (0);
 // }
 
 int	ft_game(t_general *g)
 {
-	if (g->frame == 10000) {
+	if (g->frame == 1000) {
 		new_frame(g);
 		g->frame = 0;
 	}

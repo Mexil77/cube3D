@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 20:49:41 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/05 20:56:49 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:12:43 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,22 @@ MINIMAP_SIZE
 
 static bool	check_valid_minimap(t_general *g, int x_start, int y_start)
 {
-	if ((int)round(MINIMAP_SIZE * MINIMAP_SCALE) > g->map_width)
+	//ft_putendl_fd("A", STDERR_FILENO);
+	if ((int)round(MINIMAP_SIZE * MINIMAP_SCALE) > (int)g->map_width * TILE_SIZE)
 		return (false);
-	if ((int)round(MINIMAP_SIZE * MINIMAP_SCALE) > g->map_height)
+	//ft_putendl_fd("B", STDERR_FILENO);
+	if ((int)round(MINIMAP_SIZE * MINIMAP_SCALE) > (int)g->map_height * TILE_SIZE)
 		return (false);
-	if (MINIMAP_SIZE > g->window_width || MINIMAP_SIZE > g->window_height)
+	//ft_putendl_fd("C", STDERR_FILENO);
+	if (MINIMAP_SIZE > WINDOW_WIDTH || MINIMAP_SIZE > WINDOW_HEIGHT)
 		return (false);
-	if (x_start < 0 || x_start > g->window_width)
+	//ft_putendl_fd("D", STDERR_FILENO);
+	if (x_start < 0 || x_start > WINDOW_WIDTH)
 		return (false);
-	if (y_start < 0 || y_start > g->window_height)
+	//ft_putendl_fd("E", STDERR_FILENO);
+	if (y_start < 0 || y_start > WINDOW_HEIGHT)
 		return (false);
+	//ft_putendl_fd("F", STDERR_FILENO);
 	return (true);
 }
 
@@ -53,8 +59,8 @@ static bool	set_vars(t_minimap *vars, t_general *g, int x_start, int y_start)
 
 	if(!check_valid_minimap(g, x_start, y_start))
 		return (false);
-	vars->x_pl_off = false;
-	vars->y_pl_off = false;
+	x_pl_off = false;
+	y_pl_off = false;
 	vars->x_map_start = g->posx - round(MINIMAP_SCALE * MINIMAP_SIZE / 2);
 	vars->y_map_start = g->posy - round(MINIMAP_SCALE * MINIMAP_SIZE / 2);
 	/*  
@@ -63,23 +69,24 @@ static bool	set_vars(t_minimap *vars, t_general *g, int x_start, int y_start)
 	
 	*/
 	//COMPROBAMOS QUE LAS COORDENADAS NO SON DEMASIADO BAJAS (EL PERSONAJE ESTÁ JUNTO A LA PARED IZQUIERDA O SUPERIOR DEL MAPA)
-	if (vars->x_map_start < 0 && ++vars->x_pl_off)
+	if (vars->x_map_start < 0 && ++x_pl_off)
 		vars->x_map_start = 0;
-	if (vars->y_map_start < 0 && ++vars->y_pl_off)
+	if (vars->y_map_start < 0 && ++y_pl_off)
 		vars->y_map_start = 0;
 	//COMPROBAMOS QUE LAS COORDENADAS NO SON DEMASIADO ALTAS
-	if (vars->x_map_start > g->map_width && ++vars->x_pl_off)
-		vars->x_map_start = g->map_width - round(MINIMAP_SCALE * MINIMAP_SIZE);
-	if (vars->y_map_start > g->map_height && ++vars->y_pl_off)
-		vars->y_map_start = g->map_height - round(MINIMAP_SCALE * MINIMAP_SIZE);
+	if (vars->x_map_start > (int)g->map_width && ++x_pl_off)
+		vars->x_map_start = (int)g->map_width - round(MINIMAP_SCALE * MINIMAP_SIZE);
+	if (vars->y_map_start > (int)g->map_height && ++y_pl_off)
+		vars->y_map_start = (int)g->map_height - round(MINIMAP_SCALE * MINIMAP_SIZE);
 	if (x_pl_off)
-		vars->x_player = x_start + (int)round(MINIMAP_SCALE * (g->posx - x_map_start));
+		vars->x_player = x_start + (int)round(MINIMAP_SCALE * (g->posx - vars->x_map_start));
 	else
 		vars->x_player = x_start + MINIMAP_SIZE / 2;
 	if (y_pl_off)
-		vars->y_player = y_start + (int)round(MINIMAP_SCALE * (g->posy - y_map_start));
+		vars->y_player = y_start + (int)round(MINIMAP_SCALE * (g->posy - vars->y_map_start));
 	else
 		vars->y_player = y_start + MINIMAP_SIZE / 2;
+	return (true);
 }
 
 void	draw_minimap(t_img *img, t_general *g, int x_start, int y_start)
@@ -102,10 +109,10 @@ void	draw_minimap(t_img *img, t_general *g, int x_start, int y_start)
 	while (++y_drawn < MINIMAP_SIZE)
 	{
 		x_drawn = -1;
-		y_increment = (int)round(y_drawn * MINIMAP_SCALE)
+		y_increment = (int)round(y_drawn * MINIMAP_SCALE);
 		while (++x_drawn < MINIMAP_SIZE)
 		{
-			tile_val = tile_value(x_map_start + (int)round(x_drawn * MINIMAP_SCALE), y_map_start + y_increment;
+			tile_val = tile_value(g, vars.x_map_start + (int)round(x_drawn * MINIMAP_SCALE), vars.y_map_start + y_increment);
 			if (tile_val == -1)
 				draw_pixel(img, x_start + x_drawn, y_start + y_drawn, 0x00FF0000);
 			if (tile_val == '1' || tile_val == ' ')
@@ -114,5 +121,5 @@ void	draw_minimap(t_img *img, t_general *g, int x_start, int y_start)
 				draw_pixel(img, x_start + x_drawn, y_start + y_drawn, FLOOR_COLOR);
 		}
 	}
-	draw_player(img, g, x_player, y_player);
+	//draw_player(img, g, x_player, y_player);
 }
