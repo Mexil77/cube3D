@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/06 18:09:45 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:51:14 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@
 #  define RADGR 0.01745329251
 # endif
 
-# define WINDOW_WIDTH 1650
-# define WINDOW_HEIGHT 700
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 
 # define PLAYER_FOV 60
 # define PLAYER_SIGHT 200
 
-# define MINIMAP_SCALE 0.5
-# define MINIMAP_SIZE 160
+# define MINIMAP_SCALE 2 // NECESITA SER MAYOR QUE 1 (Y A SER POSIBLE POTENCIA DE 2), SI NO HAY QUE HACER FLOAT X_DRAWN E Y_DRAWN EN DRAW_MINIMAP.
+# define MINIMAP_SIZE 192
 
 #define CEILING_COLOR 0x00B3D5E0
 #define WALL_COLOR 0x00000000
@@ -59,8 +59,8 @@ typedef struct	s_img {
 typedef struct	s_minimap
 {
 	//PÍXELES DEL MAPA DESDE LOS QUE VAMOS A EMPEZAR A DIBUJAR
-	double	x_map_start;
-	double	y_map_start;
+	float	x_map_start;
+	float	y_map_start;
 
 	//COORDENADAS EN LAS QUE HAY QUE DIBUJAR AL PERSONAJE DENTRO DEL MINIMAP
 	int	x_player;
