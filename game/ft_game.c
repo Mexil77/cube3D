@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/08 19:01:06 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/09 20:37:43 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	calc_position(t_general *g)
 
 	if (g->rotate_dir != 0)
 		g->ang = parse_angle(g->ang + g->rotate_dir * g->rotate_speed);
+	//printf("Angle now is %d\n", g->ang);
 	if (!g->move_dir)
 		return ;
 	xprog = g->posx;
@@ -61,12 +62,22 @@ void	new_frame(t_general *g)
 	// frame.img = mlx_new_image(g->mlx, g->window_width, g->window_height);
 	// frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
 	calc_position(g); // CALCULAMOS EL MOVIMIENTO
+	
+	//SOLUCIÓN ANTIGUA PARA LA DOBLE PANTALLA
+	
 	// draw_map(g, &g->img_minimap, 0, 0); // DIBUJAMOS EL MINIMAPA
 	// draw_player(&g->img_minimap, (int)g->posx, (int)g->posy, PLAYER_COLOR);
 	// draw_fan(&g->img_minimap, g);
 	// mlx_put_image_to_window(g->mlx, g->win, g->img_minimap.img, 0, 0);
+
+	//SOLUCIÓN PARA VER EL MAPA AHORA
+	
+	draw_map(g, &g->img_pov, 0, 0); // DIBUJAMOS EL MINIMAPA
+	draw_player(&g->img_pov, (int)g->posx, (int)g->posy, PLAYER_COLOR);
+	//draw_fan(&g->img_pov, g);
+
 	draw_pov(g);
-	draw_minimap(&g->img_pov, g, 0, 0);
+	//draw_minimap(&g->img_pov, g, 0, 0);
 	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, 0);
 }
 
