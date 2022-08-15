@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/09 19:12:20 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/15 19:55:43 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,13 @@ typedef struct s_general
 {
 	void	*mlx;
 	void	*win;
-	int		window_height;
-	int		window_width;
 	char	**map;
-	char	*tn;
-	char	*ts;
-	char	*te;
-	char	*tw;
-	char	*f;
-	char	*c;
 	char	pos;
-	// void	*img;
-	// char	*addr;
-	// int		bpp;
-	// int		linelenght;
-	// int		endian;
 	size_t	map_width;
 	size_t	map_height;
 	float	posx;
 	float	posy;
 	bool	game;
-	bool	kw;
-	bool	ka;
-	bool	ks;
-	bool	kd;
 	int		move_dir;
 	int		rotate_dir;
 	size_t	frame;
@@ -108,57 +91,26 @@ typedef struct s_general
 	struct s_img	img_minimap;
 }	t_general;
 
-typedef struct s_raycast
-{
-	double	dir_x;
-	double	dir_y;
-	double	planex;
-	double	planey;
-	double	camera_x;
-	double	raydir_x;
-	double	raydir_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	prep_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		map_x;
-	int		map_y;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	bool	hit;
-	bool	side;
-}	t_raycast;
-
 /* Parse */
-void	ft_parsemap(t_general *g, char *map);
+void	parse_map(t_general *g, char *map);
 
 /* Utils */
-void	ft_freesplit(char **split);
-bool	ft_validcharmap(char c);
-void	ft_error(char *str, t_general *g);
-void	ft_freeall(t_general *g);
-int		ft_closeredcros(t_general *g);
+void	free_split(char **split);
+bool	valid_map_char(char c);
+void	error(char *str, t_general *g);
+void	free_all(t_general *g);
+int		close_red_cross(t_general *g);
 int		parse_angle(int angle);
 char	tile_value(t_general *g, int x_coord, int y_coord);
-
-/* Utils 2 */
-void	ft_printraycast(t_raycast *r);
-void	ft_closewindow(t_general *g);
-float	ft_torad(float grad);
+void	close_window(t_general *g);
+float	to_rad(float grad);
 
 /* Validations */
 void	ft_getcaracterpos(t_general *g);
 bool	ft_validatemap(t_general *g);
 
-/* Raycast */
-void	ft_raycast(t_general *g);
-
 /* Window */
-void	ft_window(t_general *g);
+void	init_window(t_general *g);
 
 /* Draw */
 void	ft_myputpixel(t_general *g, int x, int y, int color);
@@ -177,7 +129,7 @@ void	draw_minimap(t_img *img, t_general *g, int x_start, int y_start);
 void	ft_minimap(t_general *g);
 
 /* Game */
-int		ft_game(t_general *g);
+int		game_loop(t_general *g);
 bool	ft_validtale(t_general *g, float xn, float yn);
 
 /* main */

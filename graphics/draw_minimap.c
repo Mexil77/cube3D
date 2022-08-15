@@ -6,29 +6,11 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 20:49:41 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/08 21:16:11 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/15 17:53:16 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
-
-/*
-MINIMAP_SCALE
-MINIMAP_SIZE
-*/
-
-// typedef struct	s_minimap
-// {
-// 	//PÍXELES DEL MAPA DESDE LOS QUE VAMOS A EMPEZAR A DIBUJAR
-// 	double	x_map_start;
-// 	double	y_map_start;
-
-// 	//COORDENADAS EN LAS QUE HAY QUE DIBUJAR AL PERSONAJE DENTRO DEL MINIMAP
-// 	int	x_player;
-// 	int	y_player;
-
-
-// }				t_minimap;
 
 static bool	check_valid_minimap(t_general *g, int x_start, int y_start)
 {

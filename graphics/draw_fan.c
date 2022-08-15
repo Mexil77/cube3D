@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 13:33:40 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/01 20:13:50 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/15 19:52:23 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void	draw_ray(t_img *img, t_general *g, float ang)
 	
 	prog_x = g->posx;
 	prog_y = g->posy;
-	x_increment = cos(ft_torad(ang));
-	y_increment = sin(ft_torad(ang));
+	x_increment = cos(to_rad(ang));
+	y_increment = sin(to_rad(ang));
 	x_newtile = 0;
 	y_newtile = 0;
 	//printf("Ang is %f now\n", ang);
@@ -68,7 +68,7 @@ static void	draw_ray(t_img *img, t_general *g, float ang)
 	steps = 0;
 	while (1)
 	{
-		//prog_x = g->posx + steps * cos(ft_torad(ang));
+		//prog_x = g->posx + steps * cos(to_rad(ang));
 		prog_x += x_increment;
 		//printf("%dth step: prog_x is %f", steps, prog_x);
 		if ((int)prog_x % TILE_SIZE == x_newtile && /*!ft_validtale(g, prog_x, prog_y)*/tile_value(g, (int)prog_x, (int)prog_y) == '1') {
@@ -79,7 +79,7 @@ static void	draw_ray(t_img *img, t_general *g, float ang)
 			draw_pixel(img, (int)prog_x, (int)prog_y, 0x0000FF00);
 			return ;
 		}
-		//prog_y = g->posy + steps * sin(ft_torad(ang));
+		//prog_y = g->posy + steps * sin(to_rad(ang));
 		prog_y += y_increment;
 		//printf(" and prog_y is %f\n", prog_y);
 		if ((int)prog_y % TILE_SIZE == y_newtile && /*!ft_validtale(g, prog_x, prog_y)*/tile_value(g, (int)prog_x, (int)prog_y) == '1') {
@@ -108,13 +108,13 @@ static void	draw_ray(t_img *img, t_general *g, float ang)
 // 	steps = 0;
 // 	while (++steps <= 200)
 // 	{
-// 		prog_x = g->posx + steps * cos(ft_torad(ang));
+// 		prog_x = g->posx + steps * cos(to_rad(ang));
 // 		if (prog_x % TILE_SIZE == 0 && !ft_validtale(g, prog_x, prog_y)) {
 // 			// printf("I've encountered something at %d steps\n", steps);
 // 			// write(STDERR_FILENO, "AH!\n", 4);
 // 			return ;
 // 		}
-// 		prog_y = g->posy + steps * sin(ft_torad(ang));
+// 		prog_y = g->posy + steps * sin(to_rad(ang));
 // 		if (prog_y % TILE_SIZE == 0 && !ft_validtale(g, prog_x, prog_y)) {
 // 			// printf("I've encountered something at %d steps\n", steps);
 // 			// write(STDERR_FILENO, "AH!\n", 4);

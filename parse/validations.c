@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/31 18:15:16 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/15 19:50:54 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 bool	ft_iscover(t_general *g, size_t x, size_t y)
 {
-	if (x > 0 && !ft_validcharmap(g->map[y][x - 1]))
+	if (x > 0 && !valid_map_char(g->map[y][x - 1]))
 		return (false);
-	if (x < g->map_width - 1 && !ft_validcharmap(g->map[y][x + 1]))
+	if (x < g->map_width - 1 && !valid_map_char(g->map[y][x + 1]))
 		return (false);
-	if (y > 0 && !ft_validcharmap(g->map[y - 1][x]))
+	if (y > 0 && !valid_map_char(g->map[y - 1][x]))
 		return (false);
-	if (y < g->map_height - 1 && !ft_validcharmap(g->map[y + 1][x]))
+	if (y < g->map_height - 1 && !valid_map_char(g->map[y + 1][x]))
 		return (false);
 	return (true);
 }

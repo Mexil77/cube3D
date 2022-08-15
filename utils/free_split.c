@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast2.c                                         :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 10:39:36 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/26 19:02:33 by vguttenb         ###   ########.fr       */
+/*   Created: 2022/08/15 19:31:02 by vguttenb          #+#    #+#             */
+/*   Updated: 2022/08/15 19:31:17 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-float	ft_distxini(t_general *g, float ang)
+void	free_split(char **split)
 {
-	if (g->ang > 90 && g->ang < 270)
-		return (((g->posx % TILE_SIZE) + 1) / cos(ft_torad(ang)));
-	else
-		return ((TILE_SIZE - (g->posx % TILE_SIZE)) / cos(ft_torad(ang)));
-}
+	size_t	i;
 
-void	ft_calcray(t_general *g, float ang, int color)
-{
-	float	dxi;
-	float	dyi;
-	float	dxc;
-	float	dyc;
-
-	dxi = ft_distxini(g, ang);
-	dyi = ft_distyini(g, ang);
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free (split);
 }

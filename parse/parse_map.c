@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/06 17:53:42 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/15 19:50:54 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	ft_ismap(char *line)
 		return (false);
 	i = -1;
 	while (line[++i])
-		if (!ft_validcharmap(line[i]) && line[i] != ' ' && line[i] != '\n')
+		if (!valid_map_char(line[i]) && line[i] != ' ' && line[i] != '\n')
 			return (false);
 	return (true);
 }
@@ -94,7 +94,7 @@ static void	ft_fillmap(t_general *g, char *map)
 	close(fd);
 }
 
-void	ft_parsemap(t_general *g, char *map)
+void	parse_map(t_general *g, char *map)
 {
 	ft_countmap(g, map);
 	ft_fillmap(g, map);

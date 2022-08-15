@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/26 19:14:36 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/07/26 19:14:48 by vguttenb         ###   ########.fr       */
+/*   Created: 2022/08/15 16:56:50 by vguttenb          #+#    #+#             */
+/*   Updated: 2022/08/15 16:58:41 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-void	ft_error(char *str, t_general *g)
+int	ft_getcolor(int t, int r, int g, int b)
 {
-	printf("Error\n");
-	printf("%s\n", str);
-	ft_freeall(g);
-	exit(0);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
