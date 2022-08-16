@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_window.c                                        :+:      :+:    :+:   */
+/*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 17:29:34 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/07/05 11:58:00 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/08/15 16:56:50 by vguttenb          #+#    #+#             */
+/*   Updated: 2022/08/15 16:58:41 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-void	ft_window(t_general *g)
+int	ft_getcolor(int t, int r, int g, int b)
 {
-	g->mlx = mlx_init();
-	g->win = mlx_new_window(g->mlx, g->winw, g->winh, "cube3D");
-	if (!g->win)
-		ft_error("Error de ventana", g);
-	mlx_hook(g->win, 17, 1L << 17, ft_closeredcros, g);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
