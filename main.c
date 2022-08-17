@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:50:25 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/17 20:01:44 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	init_struct(t_general *g)
 
 int	ft_keypress(int keycode, t_general *g)
 {
+	printf("key code is %d\n", keycode);
 	if (keycode == 53)
 		close_window(g);
 	if (keycode == 13)
@@ -61,6 +62,8 @@ int	ft_keypress(int keycode, t_general *g)
 		g->move_dir = -1;
 	else if (keycode == 2)
 		g->rotate_dir = 1;
+	else if (keycode == 37) // L
+		draw_pov_diagn(g);
 	return (0);
 }
 

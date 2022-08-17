@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/15 20:02:06 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:54:32 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,47 @@ static float find_coll_hor(t_general *g, float ang)
 	}
 }
 
+// static float find_coll_hor_2(t_general *g, float ang)
+// {
+// 	float	ray_x;
+// 	float	ray_y;
+// 	float	incr_x;
+// 	float	incr_y;
+// 	float	distance;
+// 	float	incr_dist;
+// 	int		deviation = 0;
+	
+// 	if (ang == 0 || ang == 180)
+// 		return MAXFLOAT;
+// 	if (ang > 180)
+// 	{
+// 		ray_y = (int)(g->posy / TILE_SIZE) * TILE_SIZE/*- 0.001*/;
+// 		ray_x = g->posx - (1/tan(to_rad(ang)) * (g->posy - ray_y));
+		
+// 		incr_y = -TILE_SIZE;
+// 		incr_x = -(1/tan(to_rad(ang)) * TILE_SIZE);
+// 		deviation = 1;
+
+// 	}
+// 	else
+// 	{
+// 		ray_y = (int)(g->posy / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
+// 		ray_x = g->posx + (1/tan(to_rad(ang)) * (ray_y - g->posy));
+// 		incr_y = TILE_SIZE;
+// 		incr_x = (1/tan(to_rad(ang)) * TILE_SIZE);
+
+// 	}
+// 	distance = dist(g->posx, g->posy, ray_x, ray_y);
+// 	incr_dist = dist(0, 0, incr_x, incr_y);
+// 	while (tile_value(g, (int)ray_x, (int)ray_y - deviation) == '0')
+// 	{
+// 		ray_x += incr_x;
+// 		ray_y += incr_y;
+// 		distance += incr_dist; 
+// 	}
+// 	return distance;
+// }
+
 static float find_coll_vert(t_general *g, float ang)
 {
 	float	ray_x;
@@ -139,6 +180,47 @@ static float find_coll_vert(t_general *g, float ang)
 		
 	}
 }
+
+// static float find_coll_vert_2(t_general *g, float ang)
+// {
+// 	float	ray_x;
+// 	float	ray_y;
+// 	float	incr_x;
+// 	float	incr_y;
+// 	float	distance;
+// 	float	incr_dist;
+// 	int		deviation = 0;
+	
+// 	if (ang == 90 || ang == 270)
+// 		return MAXFLOAT;
+// 	if (ang > 90 && ang < 270)
+// 	{
+// 		ray_x = (int)(g->posx / TILE_SIZE) * TILE_SIZE/*- 0.001*/;
+// 		ray_y = g->posy - (tan(to_rad(ang)) * (g->posx - ray_x));
+// 		// h2 = bla bla bla TODO: LA APUESTA SUPER INFERNAL
+// 		//printf("	player position is %f x and %f y, ray ang is %f, 1st vert collision is %f x and %f y\n", g->posx, g->posy, ang, ray_x, ray_y);
+// 		incr_x = -TILE_SIZE;
+// 		incr_y = -(tan(to_rad(ang)) * TILE_SIZE);
+// 		deviation = 1;
+// 	}
+// 	else
+// 	{
+// 		ray_x = (int)(g->posx / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
+// 		ray_y = g->posy + (tan(to_rad(ang)) * (ray_x - g->posx));
+// 		incr_x = TILE_SIZE;
+// 		incr_y = (tan(to_rad(ang)) * TILE_SIZE);
+		
+// 	}
+// 	distance = dist(g->posx, g->posy, ray_x, ray_y);
+// 	incr_dist = dist(0, 0, incr_x, incr_y);
+// 	while (tile_value(g, (int)ray_x - deviation, (int)ray_y) == '0')
+// 	{
+// 		ray_x += incr_x;
+// 		ray_y += incr_y;
+// 		distance += incr_dist; 
+// 	}
+// 	return distance;
+// }
 
 void	draw_pov(t_general *g)
 {
