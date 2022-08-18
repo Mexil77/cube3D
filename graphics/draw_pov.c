@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/17 19:54:32 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/18 21:05:55 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static float find_coll_hor(t_general *g, float ang)
 		//printf("	player position is %f x and %f y, ray ang is %f, 1st hor collision is %f x and %f y\n", g->posx, g->posy, ang, ray_x, ray_y);
 		while (tile_value(g, (int)ray_x, (int)ray_y) == '0')
 		{
+			if ((int)ray_x % TILE_SIZE == 0 && tile_value(g, (int)ray_x - 1, (int)ray_y) != '0' && tile_value(g, (int)ray_x, (int)ray_y - 1) != '0')
+				break ;
 			ray_y += TILE_SIZE;
 			ray_x += (1/tan(to_rad(ang)) * TILE_SIZE);
 			
@@ -169,9 +171,10 @@ static float find_coll_vert(t_general *g, float ang)
 		//printf("	player position is %f x and %f y, ray ang is %f, 1st vert collision is %f x and %f y\n", g->posx, g->posy, ang, ray_x, ray_y);
 		while (tile_value(g, (int)ray_x, (int)ray_y) == '0')
 		{
+			if ((int)ray_y % TILE_SIZE == 0 && tile_value(g, (int)ray_x, (int)ray_y - 1) != '0' && tile_value(g, (int)ray_x - 1, (int)ray_y) != '0')
+				break ;
 			ray_x += TILE_SIZE;
 			ray_y += (tan(to_rad(ang)) * TILE_SIZE);
-			
 			//sleep(1000);
 			//printf("%c\n", tile_value(g, (int)ray_x, (int)ray_y));
 		}

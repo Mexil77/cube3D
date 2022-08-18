@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/17 20:15:05 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/18 20:55:25 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,13 @@ static float find_coll_hor_2(t_general *g, float ang)
 	}
 	distance = dist(g->posx, g->posy, ray_x, ray_y);
 	incr_dist = dist(0, 0, incr_x, incr_y);
-	printf("\tGoing to check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
+	printf("\tHor check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
 	while (tile_value(g, (int)ray_x, (int)ray_y - deviation) == '0')
 	{
 		ray_x += incr_x;
 		ray_y += incr_y;
 		distance += incr_dist; 
-		printf("\tGoing to check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
+		printf("\tHor check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
 	}
 	return distance;
 }
@@ -215,13 +215,13 @@ static float find_coll_vert_2(t_general *g, float ang)
 	}
 	distance = dist(g->posx, g->posy, ray_x, ray_y);
 	incr_dist = dist(0, 0, incr_x, incr_y);
-	printf("\tGoing to check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
+	printf("\tVert check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
 	while (tile_value(g, (int)ray_x - deviation, (int)ray_y) == '0')
 	{
 		ray_x += incr_x;
 		ray_y += incr_y;
 		distance += incr_dist;
-		printf("\tGoing to check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
+		printf("\tVert check \t%d x and \t%d y\n", (int)ray_x, (int)ray_y - deviation);
 	}
 	return distance;
 }
@@ -243,11 +243,13 @@ void	draw_pov_diagn(t_general *g)
 	//printf("My starting angle is %f\n", ang);
 	increment = (float)PLAYER_FOV / WINDOW_WIDTH;
 	//printf("My increment is %f\n", increment);
+	printf("Player is %f x, %f y and %d angle\n\n", g->posx, g->posy, g->ang);
 	while (++numrays < WINDOW_WIDTH)
 	{
 		ang += increment;
 		if (ang >= 360)
 			ang -= 360;
+		printf("%04dth ray, ang %f\n", numrays, ang);
 		// y_dist = find_coll_hor(g, ang);
 		// x_dist = find_coll_vert(g, ang);
 		y_dist = find_coll_hor_2(g, ang);
