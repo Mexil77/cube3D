@@ -6,13 +6,13 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/18 21:05:55 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:31:40 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-static void		draw_column(t_general *g, float dist, int x, float angle)
+static void		draw_column(t_general *g, double dist, int x, float angle)
 {
 	int	wall_height;
 	int	wall_top;
@@ -25,7 +25,7 @@ static void		draw_column(t_general *g, float dist, int x, float angle)
 	
 	wall_height = 0;
 	if (dist >= 1)
-		wall_height = (TILE_SIZE * WINDOW_HEIGHT / (int)round(dist * cos(to_rad(angle))));
+		wall_height = (int)round(TILE_SIZE * WINDOW_HEIGHT / (dist * cos(to_rad(angle))));
 	if (wall_height > WINDOW_HEIGHT || dist < 1)
 		wall_height = WINDOW_HEIGHT;
 	//printf("%04dth ray: My dist is %f, my angle cos is %f and their product is %f so wall_height is %d\n\n", x, dist, cos(to_rad(angle)), (dist * cos(to_rad(angle))), wall_height);
@@ -40,11 +40,11 @@ static void		draw_column(t_general *g, float dist, int x, float angle)
 		draw_pixel(&g->img_pov, x, y_drawn++, FLOOR_COLOR);
 }
 
-static float	dist(float x_origin, float y_origin, float x_collision, float y_collision)
+static double	dist(double x_origin, double y_origin, double x_collision, double y_collision)
 {
-	float x_side;
-	float y_side;
-	float result;
+	double x_side;
+	double y_side;
+	double result;
 
 	x_side = x_origin - x_collision;
 	//printf("x_side is %f and its power is %f, ", x_side, pow(x_side, 2));
@@ -55,10 +55,10 @@ static float	dist(float x_origin, float y_origin, float x_collision, float y_col
 	return (result);
 }
 
-static float find_coll_hor(t_general *g, float ang)
+static double find_coll_hor(t_general *g, float ang)
 {
-	float	ray_x;
-	float	ray_y;
+	double	ray_x;
+	double	ray_y;
 	
 	if (ang == 0 || ang == 180)
 		return MAXFLOAT;
@@ -84,8 +84,8 @@ static float find_coll_hor(t_general *g, float ang)
 		//printf("	player position is %f x and %f y, ray ang is %f, 1st hor collision is %f x and %f y\n", g->posx, g->posy, ang, ray_x, ray_y);
 		while (tile_value(g, (int)ray_x, (int)ray_y) == '0')
 		{
-			if ((int)ray_x % TILE_SIZE == 0 && tile_value(g, (int)ray_x - 1, (int)ray_y) != '0' && tile_value(g, (int)ray_x, (int)ray_y - 1) != '0')
-				break ;
+			// if ((int)ray_x % TILE_SIZE == 0 && tile_value(g, (int)ray_x - 1, (int)ray_y) != '0' && tile_value(g, (int)ray_x, (int)ray_y - 1) != '0')
+			// 	break ;
 			ray_y += TILE_SIZE;
 			ray_x += (1/tan(to_rad(ang)) * TILE_SIZE);
 			
@@ -138,10 +138,10 @@ static float find_coll_hor(t_general *g, float ang)
 // 	return distance;
 // }
 
-static float find_coll_vert(t_general *g, float ang)
+static double find_coll_vert(t_general *g, float ang)
 {
-	float	ray_x;
-	float	ray_y;
+	double	ray_x;
+	double	ray_y;
 	
 	if (ang == 90 || ang == 270)
 		return MAXFLOAT;
@@ -171,8 +171,8 @@ static float find_coll_vert(t_general *g, float ang)
 		//printf("	player position is %f x and %f y, ray ang is %f, 1st vert collision is %f x and %f y\n", g->posx, g->posy, ang, ray_x, ray_y);
 		while (tile_value(g, (int)ray_x, (int)ray_y) == '0')
 		{
-			if ((int)ray_y % TILE_SIZE == 0 && tile_value(g, (int)ray_x, (int)ray_y - 1) != '0' && tile_value(g, (int)ray_x - 1, (int)ray_y) != '0')
-				break ;
+			// if ((int)ray_y % TILE_SIZE == 0 && tile_value(g, (int)ray_x, (int)ray_y - 1) != '0' && tile_value(g, (int)ray_x - 1, (int)ray_y) != '0')
+			// 	break ;
 			ray_x += TILE_SIZE;
 			ray_y += (tan(to_rad(ang)) * TILE_SIZE);
 			//sleep(1000);

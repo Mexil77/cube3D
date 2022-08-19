@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/18 20:52:41 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:19:03 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	init_struct(t_general *g)
 	g->rotate_speed = 4;
 
 	//SOBRESCRITURA DE LA POSICIÓN DEL JUGADOR PARA PRUEBAS DE RAYCAST
-	g->posx = 1599.977417;
-	g->posy = 383.470093;
-	g->ang = 88;
+	g->posx = 1535.484375;
+	g->posy = 384.378906;
+	g->ang = 320;
 	
 }
 
