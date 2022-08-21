@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:55:43 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/16 18:36:19 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,11 @@ int		parse_angle(int angle);
 char	tile_value(t_general *g, int x_coord, int y_coord);
 void	close_window(t_general *g);
 float	to_rad(float grad);
+void	print_double_pointer(char **double_pointer);
 
 /* Validations */
-void	ft_getcaracterpos(t_general *g);
-bool	ft_validatemap(t_general *g);
+void	get_caracter_pos(t_general *g);
+bool	validate_map(t_general *g);
 
 /* Window */
 void	init_window(t_general *g);

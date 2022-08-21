@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:50:25 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/16 18:36:41 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,12 @@ int	main(int argc, char **argv)
 	parse_map(general, argv[1]); // RENOMBRADO
 	init_struct(general);
 	init_window(general);
-	// ft_printgeneral(general);
-	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
-	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
+	print_general(general);
+	// mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
+	// mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
 	// mlx_key_hook(general->win, ft_keyhook, general);
-	mlx_loop_hook(general->mlx, game_loop, general);
-	mlx_loop(general->mlx);
+	// mlx_loop_hook(general->mlx, game_loop, general);
+	// mlx_loop(general->mlx);
 	free_all(general);
 	return (0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:50:54 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/16 15:01:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-bool	ft_iscover(t_general *g, size_t x, size_t y)
+bool	is_cover(t_general *g, size_t x, size_t y)
 {
 	if (x > 0 && !valid_map_char(g->map[y][x - 1]))
 		return (false);
@@ -25,7 +25,7 @@ bool	ft_iscover(t_general *g, size_t x, size_t y)
 	return (true);
 }
 
-bool	ft_validatemap(t_general *g)
+bool	validate_map(t_general *g)
 {
 	size_t	i;
 	size_t	j;
@@ -35,13 +35,13 @@ bool	ft_validatemap(t_general *g)
 	{
 		j = -1;
 		while (g->map[i][++j] && j < g->map_width)
-			if (g->map[i][j] == '0' && !ft_iscover(g, j, i))
+			if (g->map[i][j] == '0' && !is_cover(g, j, i))
 				return (false);
 	}
 	return (true);
 }
 
-void	ft_getcaracterpos(t_general *g)
+void	get_caracter_pos(t_general *g)
 {
 	size_t	i;
 	size_t	j;

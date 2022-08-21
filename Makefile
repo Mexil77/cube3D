@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+         #
+#    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2022/08/15 20:03:18 by vguttenb         ###   ########.fr        #
+#    Updated: 2022/08/16 15:43:02 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS	=	main.c														\
 			utils/parse_angle.c utils/tile_value.c utils/free_split.c	\
 			utils/valid_map_char.c utils/close_red_cross.c				\
 			utils/close_window.c utils/to_rad.c							\
+			utils/print_double_pointer.c								\
 			graphics/init_window.c										\
 			graphics/draw_pixel.c graphics/draw_map.c					\
 			graphics/draw_player.c graphics/draw_fan.c					\
