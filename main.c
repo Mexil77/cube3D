@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/21 05:05:24 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/21 07:13:56 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ void	print_general(t_general *g)
 	printf("posy : %f\n", g->posy);
 	printf("w : %zu\n", g->map_width);
 	printf("h : %zu\n", g->map_height);
+	printf("no_texture : %s\n", g->no_texture);
+	printf("so_texture : %s\n", g->so_texture);
+	printf("we_texture : %s\n", g->we_texture);
+	printf("ea_texture : %s\n", g->ea_texture);
 	print_double_pointer(g->map);
-	print_double_pointer(g->file_char);
+	// print_double_pointer(g->file_char);
 }
 
 int	ft_keyhook(int keycode, t_general *g)

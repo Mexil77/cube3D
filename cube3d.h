@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/21 05:13:37 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/21 06:58:57 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ typedef struct s_general
 	void			*win;
 	char			**map;
 	char			**file_char;
+	char			*no_texture;
+	char			*so_texture;
+	char			*we_texture;
+	char			*ea_texture;
 	char			pos;
 	size_t			map_width;
 	size_t			map_height;
