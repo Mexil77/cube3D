@@ -6,12 +6,12 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2022/08/16 15:43:02 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/08/21 04:04:09 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	main.c														\
-			parse/parse_map.c parse/validations.c						\
+			parse/parse_map.c parse/validations.c parse/fill_data.c		\
 			utils/error.c utils/free_all.c								\
 			utils/parse_angle.c utils/tile_value.c utils/free_split.c	\
 			utils/valid_map_char.c utils/close_red_cross.c				\

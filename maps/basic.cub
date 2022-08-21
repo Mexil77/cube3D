@@ -1,7 +1,7 @@
-NO ./ruta_a_la_textura_norte
-SO ./ruta_a_la_textura_sur
-WE ./ruta_a_la_textura_oeste
-EA ./ruta_a_la_textura_este
+NO ./ruta_a_la_textura_norte.xpm
+SO ./ruta_a_la_textura_sur.xpm
+WE ./ruta_a_la_textura_oeste.xpm
+EA ./ruta_a_la_textura_este.xpm
 
 F 220,100,0
 C 225,30,0

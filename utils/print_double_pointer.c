@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:39:06 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/21 03:16:48 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/21 03:36:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	print_double_pointer(char **double_pointer)
 
 	i = -1;
 	while (double_pointer && double_pointer[++i])
-		printf("%s", double_pointer[i]);
+		printf("%s\n", double_pointer[i]);
 }

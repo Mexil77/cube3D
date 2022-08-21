@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/16 18:36:41 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/21 05:05:24 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 void	print_general(t_general *g)
 {
-	size_t	i;
-
 	printf("pos : %c\n", g->pos);
 	printf("posx : %f\n", g->posx);
 	printf("posy : %f\n", g->posy);
 	printf("w : %zu\n", g->map_width);
 	printf("h : %zu\n", g->map_height);
-	i = -1;
-	while (g->map && g->map[++i] && i < g->map_height)
-		printf("%s\n", g->map[i]);
+	print_double_pointer(g->map);
+	print_double_pointer(g->file_char);
 }
 
 int	ft_keyhook(int keycode, t_general *g)
@@ -91,7 +88,7 @@ int	main(int argc, char **argv)
 	printf("mapa : %s\n", argv[1]);
 	parse_map(general, argv[1]); // RENOMBRADO
 	init_struct(general);
-	init_window(general);
+	// init_window(general);
 	print_general(general);
 	// mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
 	// mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);

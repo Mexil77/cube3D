@@ -6,13 +6,13 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/16 18:54:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/21 05:16:38 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-static bool	is_map(char *line)
+bool	is_map(char *line)
 {
 	size_t	i;
 
@@ -25,20 +25,20 @@ static bool	is_map(char *line)
 	return (true);
 }
 
-void	count_map(t_general *g, char **file_char)
+void	count_map(t_general *g)
 {
 	size_t	longest;
 	size_t	i;
 
 	longest = 0;
 	i = -1;
-	while (file_char[++i])
+	while (g->file_char[++i])
 	{
-		if (is_map(file_char[i]))
+		if (is_map(g->file_char[i]))
 		{
 			g->map_height++;
-			if (ft_strlen(file_char[i]) - 1 > longest)
-				longest = ft_strlen(file_char[i]) - 1;
+			if (ft_strlen(g->file_char[i]) - 1 > longest)
+				longest = ft_strlen(g->file_char[i]) - 1;
 		}
 	}
 	g->map_width = longest;
@@ -63,7 +63,7 @@ char	*fill_line(t_general *g, char *line)
 	return (mapline);
 }
 
-void	fill_map(t_general *g, char **file_char)
+void	fill_map(t_general *g)
 {
 	size_t	i;
 	size_t	j;
@@ -73,9 +73,9 @@ void	fill_map(t_general *g, char **file_char)
 		return ;
 	i = -1;
 	j = 0;
-	while (file_char[++i])
-		if (is_map(file_char[i]))
-			g->map[j++] = fill_line(g, file_char[i]);
+	while (g->file_char[++i])
+		if (is_map(g->file_char[i]))
+			g->map[j++] = fill_line(g, g->file_char[i]);
 }
 
 size_t	leng_heigth_file(char *file_name)
@@ -122,11 +122,9 @@ char	**file_to_map(char *file_name)
 
 void	parse_map(t_general *g, char *file_name)
 {
-	char	**file_char;
-
-	file_char = file_to_map(file_name);
-	count_map(g, file_char);
-	fill_map(g, file_char);
+	g->file_char = file_to_map(file_name);
+	count_map(g);
+	fill_map(g);
 	if (validate_map(g))
 		printf("Mapa Valido\n");
 	else

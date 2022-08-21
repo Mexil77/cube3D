@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/16 18:36:19 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/21 05:13:37 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,36 +63,37 @@ typedef struct	s_minimap
 	float	y_map_start;
 
 	//COORDENADAS EN LAS QUE HAY QUE DIBUJAR AL PERSONAJE DENTRO DEL MINIMAP
-	int	x_player;
-	int	y_player;
-
-
+	int		x_player;
+	int		y_player;
 }				t_minimap;
 
 typedef struct s_general
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	char	pos;
-	size_t	map_width;
-	size_t	map_height;
-	float	posx;
-	float	posy;
-	bool	game;
-	int		move_dir;
-	int		rotate_dir;
-	size_t	frame;
-	int		ang;
-	int		move_speed;
-	int		rotate_speed;
-	int		projection_dist;
+	void			*mlx;
+	void			*win;
+	char			**map;
+	char			**file_char;
+	char			pos;
+	size_t			map_width;
+	size_t			map_height;
+	float			posx;
+	float			posy;
+	bool			game;
+	int				move_dir;
+	int				rotate_dir;
+	size_t			frame;
+	int				ang;
+	int				move_speed;
+	int				rotate_speed;
+	int				projection_dist;
 	struct s_img	img_pov;
 	struct s_img	img_minimap;
 }	t_general;
 
 /* Parse */
+void	print_general(t_general *g);
 void	parse_map(t_general *g, char *map);
+bool	is_map(char *line);
 
 /* Utils */
 void	free_split(char **split);
@@ -138,5 +139,8 @@ void	ft_printgeneral(t_general *g);
 
 /* POV */
 void	generate_pov(t_general *g);
+
+/* fill_data */
+void	fill_data(t_general *g);
 
 #endif
