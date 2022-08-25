@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 20:49:41 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/15 17:53:16 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:25:56 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	draw_minimap(t_img *img, t_general *g, int x_start, int y_start)
 			if (tile_val == '1' || tile_val == ' ')
 				draw_pixel(img, x_start + x_drawn, y_start + y_drawn, WALL_COLOR);
 			else
-				draw_pixel(img, x_start + x_drawn, y_start + y_drawn, FLOOR_COLOR);
+				draw_pixel(img, x_start + x_drawn, y_start + y_drawn, g->color_floor);
 		}
 	}
 	draw_player(img, vars.x_player, vars.y_player, PLAYER_COLOR);

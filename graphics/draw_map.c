@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:43:38 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/07/28 21:09:51 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:25:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_map(t_general *g, t_img *img, int x, int y)
 			if (g->map[tile_y][tile_x] == '1' || g->map[tile_y][tile_x] == ' ')
 				draw_tile(img, tile_x * TILE_SIZE, tile_y * TILE_SIZE, WALL_COLOR);
 			else
-				draw_tile(img, tile_x * TILE_SIZE, tile_y * TILE_SIZE, FLOOR_COLOR);
+				draw_tile(img, tile_x * TILE_SIZE, tile_y * TILE_SIZE, g->color_floor);
 		}
 	}
 }
