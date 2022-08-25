@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/21 07:13:56 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:20:38 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	print_general(t_general *g)
 	printf("so_texture : %s\n", g->so_texture);
 	printf("we_texture : %s\n", g->we_texture);
 	printf("ea_texture : %s\n", g->ea_texture);
+	printf("color_floor : %s\n", g->color_floor);
+	printf("color_celing : %s\n", g->color_celing);
 	print_double_pointer(g->map);
 	// print_double_pointer(g->file_char);
 }

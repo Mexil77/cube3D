@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 04:01:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/21 07:13:38 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:42:39 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,41 +28,60 @@ bool	check_name_data(t_general *g, size_t i, size_t *j, int opt)
 	return (true);
 }
 
-void	fill_cordenate(t_general *g, char *texture, size_t len, int opt)
+void	fill_cordenate(t_general *g, size_t i, size_t *j, int opt)
 {
-	// printf("texture: %s\n", texture);
-	if (opt == 1)
-		g->no_texture = ft_substr(texture, 0, len);
-	if (opt == 2)
-		g->so_texture = ft_substr(texture, 0, len);
-	if (opt == 3)
-		g->we_texture = ft_substr(texture, 0, len);
-	if (opt == 4)
-		g->ea_texture = ft_substr(texture, 0, len);
+	size_t	ini;
+
+	ini = *j + 1;
+	while (g->file_char[i][++(*j)] && g->file_char[i][*j] != ' ')
+	{
+		if (!ft_strncmp(&g->file_char[i][*j], ".xpm", 4))
+		{
+			*j += 4;
+			if (opt == 1)
+				g->no_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+			if (opt == 2)
+				g->so_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+			if (opt == 3)
+				g->we_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+			if (opt == 4)
+				g->ea_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+		}
+	}
+	(*j)--;
+}
+
+void	fill_color(t_general *g, char *color, size_t *j, int opt)
+{
+	size_t	ini;
+	char	**rgb;
+	char	*temp;
+
+	ini = *j + 1;
+	while (color[++(*j)] && color[*j] != ' ' && color[*j] != '\n')
+		if ((color[*j] < '0' && color[*j] != ',') || color[*j] > '9')
+			return ;
+	temp = ft_substr(color, ini, *j - ini);
+	rgb = ft_split(temp, ',');
+	if (opt == 5 && double_pointer_len(rgb) == 3)
+		g->color_floor = temp;
+	if (opt == 6 && double_pointer_len(rgb) == 3)
+		g->color_celing = temp;
+	free_split(rgb);
+	(*j)--;
 }
 
 void	get_data(t_general *g, size_t i, size_t *j, int opt)
 {
-	size_t	ini;
-
 	if (!check_name_data(g, i, j, opt))
 		return ;
-	if (opt >= 1 && opt <= 4)
-		*j += 2;
+	(*j)++;
+	if (opt <= 4)
+		*j += 1;
+	if (opt > 4)
+		fill_color(g, g->file_char[i], j, opt);
 	else
-		(*j)++;
-	ini = *j + 1;
-	while (g->file_char[i][++(*j)] && g->file_char[i][*j] != ' ')
-	{
-		if (g->file_char[i][*j] == '.' && opt >= 1 && opt <= 4
-			&& !ft_strncmp(&g->file_char[i][*j], ".xpm", 4))
-		{
-			*j += 4;
-			fill_cordenate(g, &g->file_char[i][ini], (*j) - ini, opt);
-			return ;
-		}
-	}
-	--(*j);
+		fill_cordenate(g, i, j, opt);
 }
 
 void	fill_data(t_general *g)
