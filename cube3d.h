@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:55:43 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:25:51 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_general
 	char	pos;
 	size_t	map_width;
 	size_t	map_height;
-	float	posx;
-	float	posy;
+	double	posx;
+	double	posy;
 	bool	game;
 	int		move_dir;
 	int		rotate_dir;
@@ -137,5 +137,9 @@ void	ft_printgeneral(t_general *g);
 
 /* POV */
 void	generate_pov(t_general *g);
+
+/* Diagnose */
+void	draw_pov_diagn(t_general *g);
+
 
 #endif

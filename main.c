@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:50:25 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:19:03 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,17 @@ void	init_struct(t_general *g)
 	g->ang = 0;
 	g->move_speed = 4;
 	g->rotate_speed = 4;
+
+	//SOBRESCRITURA DE LA POSICIÓN DEL JUGADOR PARA PRUEBAS DE RAYCAST
+	g->posx = 1535.484375;
+	g->posy = 384.378906;
+	g->ang = 320;
+	
 }
 
 int	ft_keypress(int keycode, t_general *g)
 {
+	//printf("key code is %d\n", keycode);
 	if (keycode == 53)
 		close_window(g);
 	if (keycode == 13)
@@ -61,6 +68,8 @@ int	ft_keypress(int keycode, t_general *g)
 		g->move_dir = -1;
 	else if (keycode == 2)
 		g->rotate_dir = 1;
+	else if (keycode == 37) // L
+		draw_pov_diagn(g);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2022/08/15 20:03:18 by vguttenb         ###   ########.fr        #
+#    Updated: 2022/08/17 19:55:48 by vguttenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS	=	main.c														\
 			graphics/draw_pixel.c graphics/draw_map.c					\
 			graphics/draw_player.c graphics/draw_fan.c					\
 			graphics/draw_pov.c	graphics/draw_minimap.c					\
-			game/game_loop.c
+			game/game_loop.c											\
+			graphics/draw_pov_diagn.c
 LIBFT	=	Libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 NAME	=	cube3d
