@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_pov.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/15 20:02:06 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:01:11 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static void		draw_column(t_general *g, float dist, int x, float angle)
 	wall_bottom = wall_top + wall_height;
 	y_drawn = 0;
 	while (y_drawn < wall_top)
-		draw_pixel(&g->img_pov, x, y_drawn++, CEILING_COLOR);
+		draw_pixel(&g->img_pov, x, y_drawn++, g->color_celing);
 	while (y_drawn < wall_bottom)
 		draw_pixel(&g->img_pov, x, y_drawn++, WALL_COLOR);
 	while (y_drawn < WINDOW_HEIGHT)
-		draw_pixel(&g->img_pov, x, y_drawn++, FLOOR_COLOR);
+		draw_pixel(&g->img_pov, x, y_drawn++, g->color_floor);
 }
 
 static float	dist(float x_origin, float y_origin, float x_collision, float y_collision)

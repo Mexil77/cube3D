@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 16:20:38 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:12:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	print_general(t_general *g)
 	printf("so_texture : %s\n", g->so_texture);
 	printf("we_texture : %s\n", g->we_texture);
 	printf("ea_texture : %s\n", g->ea_texture);
-	printf("color_floor : %s\n", g->color_floor);
-	printf("color_celing : %s\n", g->color_celing);
+	printf("color_floor : %d\n", g->color_floor);
+	printf("color_celing : %d\n", g->color_celing);
 	print_double_pointer(g->map);
 	// print_double_pointer(g->file_char);
 }
@@ -92,15 +92,15 @@ int	main(int argc, char **argv)
 	// atexit(ft_leaks);
 	general = (t_general *)ft_calloc(sizeof(t_general), 1); // DUDA: POR QUÉ ALOCAR NUESTRA VARIABLE GENERAL
 	printf("mapa : %s\n", argv[1]);
-	parse_map(general, argv[1]); // RENOMBRADO
+	parse_map(general, argv[1]);
 	init_struct(general);
-	// init_window(general);
-	print_general(general);
-	// mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
-	// mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
-	// mlx_key_hook(general->win, ft_keyhook, general);
-	// mlx_loop_hook(general->mlx, game_loop, general);
-	// mlx_loop(general->mlx);
+	init_window(general);
+	// print_general(general);
+	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
+	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
+	mlx_key_hook(general->win, ft_keyhook, general);
+	mlx_loop_hook(general->mlx, game_loop, general);
+	mlx_loop(general->mlx);
 	free_all(general);
 	return (0);
 }

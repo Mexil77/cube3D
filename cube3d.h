@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 16:34:52 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:11:33 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_general
 	char			*so_texture;
 	char			*we_texture;
 	char			*ea_texture;
-	char			*color_floor;
-	char			*color_celing;
+	int				color_floor;
+	int				color_celing;
 	char			pos;
 	size_t			map_width;
 	size_t			map_height;
@@ -113,10 +113,12 @@ void	close_window(t_general *g);
 float	to_rad(float grad);
 void	print_double_pointer(char **double_pointer);
 size_t	double_pointer_len(char **double_pointer);
+int		ft_getcolor(int t, int r, int g, int b);
 
 /* Validations */
 void	get_caracter_pos(t_general *g);
 bool	validate_map(t_general *g);
+bool	check_name_data(t_general *g, size_t i, size_t *j, int opt);
 
 /* Window */
 void	init_window(t_general *g);

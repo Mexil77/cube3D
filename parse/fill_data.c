@@ -6,27 +6,11 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 04:01:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 16:42:39 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:11:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
-
-bool	check_name_data(t_general *g, size_t i, size_t *j, int opt)
-{
-	if ((opt == 1 && (g->file_char[i][*j + 1] != 'O'
-			|| g->file_char[i][*j + 2] != ' '))
-		|| (opt == 2 && (g->file_char[i][*j + 1] != 'O'
-			|| g->file_char[i][*j + 2] != ' '))
-		|| (opt == 3 && (g->file_char[i][*j + 1] != 'E'
-			|| g->file_char[i][*j + 2] != ' '))
-		|| (opt == 4 && (g->file_char[i][*j + 1] != 'A'
-			|| g->file_char[i][*j + 2] != ' '))
-		|| (opt == 5 && g->file_char[i][*j + 1] != ' ')
-		|| (opt == 6 && g->file_char[i][*j + 1] != ' '))
-		return (false);
-	return (true);
-}
 
 void	fill_cordenate(t_general *g, size_t i, size_t *j, int opt)
 {
@@ -51,6 +35,21 @@ void	fill_cordenate(t_general *g, size_t i, size_t *j, int opt)
 	(*j)--;
 }
 
+int	destructuring_get_color(char **rgb)
+{
+	int	red;
+	int	green;
+	int	blue;
+
+	red = ft_atoi(rgb[0]);
+	green = ft_atoi(rgb[1]);
+	blue = ft_atoi(rgb[2]);
+	if (red >= -1 && red < 256 && green >= -1 && green < 256
+		&& blue >= -1 && blue < 256)
+		return (ft_getcolor(0, red, green, blue));
+	return (-1);
+}
+
 void	fill_color(t_general *g, char *color, size_t *j, int opt)
 {
 	size_t	ini;
@@ -64,10 +63,11 @@ void	fill_color(t_general *g, char *color, size_t *j, int opt)
 	temp = ft_substr(color, ini, *j - ini);
 	rgb = ft_split(temp, ',');
 	if (opt == 5 && double_pointer_len(rgb) == 3)
-		g->color_floor = temp;
+		g->color_floor = destructuring_get_color(rgb);
 	if (opt == 6 && double_pointer_len(rgb) == 3)
-		g->color_celing = temp;
+		g->color_celing = destructuring_get_color(rgb);
 	free_split(rgb);
+	free(temp);
 	(*j)--;
 }
 

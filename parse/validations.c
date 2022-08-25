@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/21 05:16:07 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:11:39 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,20 @@ void	get_caracter_pos(t_general *g)
 			}
 		}
 	}
+}
+
+bool	check_name_data(t_general *g, size_t i, size_t *j, int opt)
+{
+	if ((opt == 1 && (g->file_char[i][*j + 1] != 'O'
+			|| g->file_char[i][*j + 2] != ' '))
+		|| (opt == 2 && (g->file_char[i][*j + 1] != 'O'
+			|| g->file_char[i][*j + 2] != ' '))
+		|| (opt == 3 && (g->file_char[i][*j + 1] != 'E'
+			|| g->file_char[i][*j + 2] != ' '))
+		|| (opt == 4 && (g->file_char[i][*j + 1] != 'A'
+			|| g->file_char[i][*j + 2] != ' '))
+		|| (opt == 5 && g->file_char[i][*j + 1] != ' ')
+		|| (opt == 6 && g->file_char[i][*j + 1] != ' '))
+		return (false);
+	return (true);
 }
