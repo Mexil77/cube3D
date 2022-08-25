@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 19:12:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:36:45 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	main(int argc, char **argv)
 	// print_general(general);
 	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
 	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
-	mlx_key_hook(general->win, ft_keyhook, general);
+	// mlx_key_hook(general->win, ft_keyhook, general);
 	mlx_loop_hook(general->mlx, game_loop, general);
 	mlx_loop(general->mlx);
 	free_all(general);
