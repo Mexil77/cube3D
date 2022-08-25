@@ -69,29 +69,29 @@ typedef struct	s_minimap
 
 typedef struct s_general
 {
-	void			*mlx;
-	void			*win;
-	char			**map;
-	char			**file_char;
+	void	*mlx;
+	void	*win;
+	char	**map;
+  char			**file_char;
 	char			*no_texture;
 	char			*so_texture;
 	char			*we_texture;
 	char			*ea_texture;
 	int				color_floor;
 	int				color_celing;
-	char			pos;
-	size_t			map_width;
-	size_t			map_height;
-	float			posx;
-	float			posy;
-	bool			game;
-	int				move_dir;
-	int				rotate_dir;
-	size_t			frame;
-	int				ang;
-	int				move_speed;
-	int				rotate_speed;
-	int				projection_dist;
+	char	pos;
+	size_t	map_width;
+	size_t	map_height;
+	double	posx;
+	double	posy;
+	bool	game;
+	int		move_dir;
+	int		rotate_dir;
+	size_t	frame;
+	int		ang;
+	int		move_speed;
+	int		rotate_speed;
+	int		projection_dist;
 	struct s_img	img_pov;
 	struct s_img	img_minimap;
 }	t_general;
@@ -151,5 +151,8 @@ void	generate_pov(t_general *g);
 
 /* fill_data */
 void	fill_data(t_general *g);
+
+/* Diagnose */
+void	draw_pov_diagn(t_general *g);
 
 #endif

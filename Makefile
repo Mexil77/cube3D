@@ -22,7 +22,8 @@ SRCS	=	main.c														\
 			graphics/draw_pixel.c graphics/draw_map.c					\
 			graphics/draw_player.c graphics/draw_fan.c					\
 			graphics/draw_pov.c	graphics/draw_minimap.c					\
-			game/game_loop.c
+			game/game_loop.c											\
+			graphics/draw_pov_diagn.c
 LIBFT	=	Libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 NAME	=	cube3d
