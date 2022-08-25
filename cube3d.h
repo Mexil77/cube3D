@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/19 18:25:51 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:11:33 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,8 @@ typedef struct	s_minimap
 	float	y_map_start;
 
 	//COORDENADAS EN LAS QUE HAY QUE DIBUJAR AL PERSONAJE DENTRO DEL MINIMAP
-	int	x_player;
-	int	y_player;
-
-
+	int		x_player;
+	int		y_player;
 }				t_minimap;
 
 typedef struct s_general
@@ -74,6 +72,13 @@ typedef struct s_general
 	void	*mlx;
 	void	*win;
 	char	**map;
+  char			**file_char;
+	char			*no_texture;
+	char			*so_texture;
+	char			*we_texture;
+	char			*ea_texture;
+	int				color_floor;
+	int				color_celing;
 	char	pos;
 	size_t	map_width;
 	size_t	map_height;
@@ -92,7 +97,9 @@ typedef struct s_general
 }	t_general;
 
 /* Parse */
+void	print_general(t_general *g);
 void	parse_map(t_general *g, char *map);
+bool	is_map(char *line);
 
 /* Utils */
 void	free_split(char **split);
@@ -104,10 +111,14 @@ int		parse_angle(int angle);
 char	tile_value(t_general *g, int x_coord, int y_coord);
 void	close_window(t_general *g);
 float	to_rad(float grad);
+void	print_double_pointer(char **double_pointer);
+size_t	double_pointer_len(char **double_pointer);
+int		ft_getcolor(int t, int r, int g, int b);
 
 /* Validations */
-void	ft_getcaracterpos(t_general *g);
-bool	ft_validatemap(t_general *g);
+void	get_caracter_pos(t_general *g);
+bool	validate_map(t_general *g);
+bool	check_name_data(t_general *g, size_t i, size_t *j, int opt);
 
 /* Window */
 void	init_window(t_general *g);
@@ -138,8 +149,10 @@ void	ft_printgeneral(t_general *g);
 /* POV */
 void	generate_pov(t_general *g);
 
+/* fill_data */
+void	fill_data(t_general *g);
+
 /* Diagnose */
 void	draw_pov_diagn(t_general *g);
-
 
 #endif

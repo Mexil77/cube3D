@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_color.c                                        :+:      :+:    :+:   */
+/*   print_double_pointer.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 16:56:50 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/25 18:41:58 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/08/16 15:39:06 by emgarcia          #+#    #+#             */
+/*   Updated: 2022/08/21 03:36:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-int	ft_getcolor(int t, int r, int g, int b)
+void	print_double_pointer(char **double_pointer)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	size_t	i;
+
+	i = -1;
+	while (double_pointer && double_pointer[++i])
+		printf("%s\n", double_pointer[i]);
 }

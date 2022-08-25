@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/19 18:19:03 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:12:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	print_general(t_general *g)
 {
-	size_t	i;
-
 	printf("pos : %c\n", g->pos);
 	printf("posx : %f\n", g->posx);
 	printf("posy : %f\n", g->posy);
 	printf("w : %zu\n", g->map_width);
 	printf("h : %zu\n", g->map_height);
-	i = -1;
-	while (g->map && g->map[++i] && i < g->map_height)
-		printf("%s\n", g->map[i]);
+	printf("no_texture : %s\n", g->no_texture);
+	printf("so_texture : %s\n", g->so_texture);
+	printf("we_texture : %s\n", g->we_texture);
+	printf("ea_texture : %s\n", g->ea_texture);
+	printf("color_floor : %d\n", g->color_floor);
+	printf("color_celing : %d\n", g->color_celing);
+	print_double_pointer(g->map);
+	// print_double_pointer(g->file_char);
 }
 
 int	ft_keyhook(int keycode, t_general *g)
@@ -98,13 +101,13 @@ int	main(int argc, char **argv)
 	// atexit(ft_leaks);
 	general = (t_general *)ft_calloc(sizeof(t_general), 1); // DUDA: POR QUÉ ALOCAR NUESTRA VARIABLE GENERAL
 	printf("mapa : %s\n", argv[1]);
-	parse_map(general, argv[1]); // RENOMBRADO
+	parse_map(general, argv[1]);
 	init_struct(general);
 	init_window(general);
-	// ft_printgeneral(general);
+	// print_general(general);
 	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
 	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
-	// mlx_key_hook(general->win, ft_keyhook, general);
+	mlx_key_hook(general->win, ft_keyhook, general);
 	mlx_loop_hook(general->mlx, game_loop, general);
 	mlx_loop(general->mlx);
 	free_all(general);

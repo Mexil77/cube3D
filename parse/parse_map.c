@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:50:54 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/21 05:16:38 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-static bool	ft_ismap(char *line)
+bool	is_map(char *line)
 {
 	size_t	i;
 
@@ -25,33 +25,26 @@ static bool	ft_ismap(char *line)
 	return (true);
 }
 
-static void	ft_countmap(t_general *g, char *map)
+void	count_map(t_general *g)
 {
-	int		fd;
 	size_t	longest;
-	char	*line;
+	size_t	i;
 
-	fd = open(map, O_RDWR);
-	if (fd < 0)
-		return ;
 	longest = 0;
-	line = get_next_line(fd);
-	while (line)
+	i = -1;
+	while (g->file_char[++i])
 	{
-		if (ft_ismap(line))
+		if (is_map(g->file_char[i]))
 		{
 			g->map_height++;
-			if (ft_strlen(line) - 1 > longest)
-				longest = ft_strlen(line) - 1;
+			if (ft_strlen(g->file_char[i]) - 1 > longest)
+				longest = ft_strlen(g->file_char[i]) - 1;
 		}
-		free (line);
-		line = get_next_line(fd);
 	}
 	g->map_width = longest;
-	close(fd);
 }
 
-static char	*ft_fillline(t_general *g, char *line)
+char	*fill_line(t_general *g, char *line)
 {
 	char	*mapline;
 	size_t	i;
@@ -65,42 +58,77 @@ static char	*ft_fillline(t_general *g, char *line)
 		if (i < ft_strlen(line) && line[i] != '\n')
 			mapline[i] = line[i];
 		else
-			mapline[i] = '1';
+			mapline[i] = '2';
 	}
 	return (mapline);
 }
 
-static void	ft_fillmap(t_general *g, char *map)
+void	fill_map(t_general *g)
 {
-	int		fd;
 	size_t	i;
-	char	*line;
+	size_t	j;
 
-	fd = open(map, O_RDWR);
-	if (fd < 0)
-		return ;
 	g->map = ft_calloc(sizeof(char *), g->map_height + 1);
 	if (!g->map)
 		return ;
-	i = 0;
+	i = -1;
+	j = 0;
+	while (g->file_char[++i])
+		if (is_map(g->file_char[i]))
+			g->map[j++] = fill_line(g, g->file_char[i]);
+}
+
+size_t	leng_heigth_file(char *file_name)
+{
+	size_t	lenght_size;
+	char	*line;
+	int		fd;
+
+	fd = open(file_name, O_RDWR);
+	if (fd < 0)
+		return (0);
+	lenght_size = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (ft_ismap(line))
-			g->map[i++] = ft_fillline(g, line);
+		lenght_size++;
 		free (line);
 		line = get_next_line(fd);
 	}
 	close(fd);
+	return (lenght_size);
 }
 
-void	parse_map(t_general *g, char *map)
+char	**file_to_map(char *file_name)
 {
-	ft_countmap(g, map);
-	ft_fillmap(g, map);
-	if (ft_validatemap(g))
+	char	**map;
+	char	*line;
+	int		fd;
+	size_t	i;
+
+	map = ft_calloc(sizeof(char *), leng_heigth_file(file_name) + 1);
+	fd = open(file_name, O_RDWR);
+	line = get_next_line(fd);
+	i = 0;
+	while (line)
+	{
+		map[i++] = ft_strdup(line);
+		free (line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (map);
+}
+
+void	parse_map(t_general *g, char *file_name)
+{
+	g->file_char = file_to_map(file_name);
+	count_map(g);
+	fill_map(g);
+	if (validate_map(g))
 		printf("Mapa Valido\n");
 	else
 		printf("Mapa Invalido\n");
-	ft_getcaracterpos(g);
+	fill_data(g);
+	get_caracter_pos(g);
 }
