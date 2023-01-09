@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 19:36:45 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/09/26 11:57:06 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_general(t_general *g)
 	printf("h : %zu\n", g->map_height);
 	printf("no_texture : %s\n", g->no_texture);
 	printf("so_texture : %s\n", g->so_texture);
-	printf("we_texture : %s\n", g->we_texture);
+	printf("we_textur : %s\n", g->we_texture);
 	printf("ea_texture : %s\n", g->ea_texture);
 	printf("color_floor : %d\n", g->color_floor);
 	printf("color_celing : %d\n", g->color_celing);
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 	parse_map(general, argv[1]);
 	init_struct(general);
 	init_window(general);
-	// print_general(general);
+	print_general(general);
 	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
 	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
 	// mlx_key_hook(general->win, ft_keyhook, general);

@@ -6,13 +6,13 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/25 19:01:11 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:45:50 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-static void		draw_column(t_general *g, double dist, int x, float angle)
+static void	draw_column(t_general *g, double dist, int x, float angle)
 {
 	int	wall_height;
 	int	wall_top;
@@ -22,7 +22,7 @@ static void		draw_column(t_general *g, double dist, int x, float angle)
 	//angle = parse_angle(angle);
 	if (angle < 360)
 		angle += 360;
-	
+
 	wall_height = 0;
 	if (dist >= 1)
 		wall_height = (int)round(TILE_SIZE * WINDOW_HEIGHT / (dist * cos(to_rad(angle))));
