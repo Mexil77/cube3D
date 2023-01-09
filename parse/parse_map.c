@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/30 14:04:10 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:15:02 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	count_map(t_general *g)
 	i = -1;
 	while (g->file_char[++i])
 	{
-		if (is_map(g->file_char[i]))
+		if (is_map(g->file_char[i])) // TODO: ESTO SOLO IGNORA UNA FILA CON UN CARÁCTER RARO, ES NORMAL?
 		{
 			g->map_height++;
 			if (ft_strlen(g->file_char[i]) - 1 > longest)

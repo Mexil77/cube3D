@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
 /*   Updated: 2022/08/30 14:01:05 by emgarcia         ###   ########.fr       */
@@ -52,7 +52,14 @@ typedef struct	s_img {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		img_width;
+	int		img_height;
 }				t_img;
+
+typedef struct	s_coll {
+	double	index;
+	int		orientation;
+}				t_coll;
 
 typedef struct	s_minimap
 {
@@ -92,6 +99,7 @@ typedef struct s_general
 	int				projection_dist;
 	struct s_img	img_pov;
 	struct s_img	img_minimap;
+	struct s_img	wall_img[4];
 }	t_general;
 
 /* Parse */
@@ -152,5 +160,9 @@ void	fill_data(t_general *g);
 
 /* Diagnose */
 void	draw_pov_diagn(t_general *g);
+
+void	test_image(t_general *g);
+
+int	wall_color(t_img *img, int	x, int y);
 
 #endif

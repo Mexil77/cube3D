@@ -1,7 +1,7 @@
-NO ../textures/bluestone.png
-SO ../textures/colorstone.png
-WE ../textures/eagle.png
-EA ../textures/greystone.png
+NO ./res/bookshelf.xpm
+SO ./res/bricksx64.xpm
+WE ./res/bookshelf.xpm
+EA ./res/bookshelf.xpm
 
 F 25,95,24
 C 150,100,250
@@ -9,7 +9,7 @@ C 150,100,250
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
-        1001000000000000000000001
+        1003000000000000000000001
 111111111011000001110000000000001
 100000000011000001110111011111111
 11110111111111011100000010001
