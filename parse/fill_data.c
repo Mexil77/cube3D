@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 04:01:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 19:11:14 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/09/26 10:35:46 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	fill_cordenate(t_general *g, size_t i, size_t *j, int opt)
 	ini = *j + 1;
 	while (g->file_char[i][++(*j)] && g->file_char[i][*j] != ' ')
 	{
-		if (!ft_strncmp(&g->file_char[i][*j], ".xpm", 4))
+		if (!ft_strncmp(&g->file_char[i][*j], ".png", 4))
 		{
 			*j += 4;
 			if (opt == 1)

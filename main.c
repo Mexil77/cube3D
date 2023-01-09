@@ -21,7 +21,7 @@ void	print_general(t_general *g)
 	printf("h : %zu\n", g->map_height);
 	printf("no_texture : %s\n", g->no_texture);
 	printf("so_texture : %s\n", g->so_texture);
-	printf("we_texture : %s\n", g->we_texture);
+	printf("we_textur : %s\n", g->we_texture);
 	printf("ea_texture : %s\n", g->ea_texture);
 	printf("color_floor : %d\n", g->color_floor);
 	printf("color_celing : %d\n", g->color_celing);
@@ -110,6 +110,7 @@ int	main(int argc, char **argv)
 
 	//exit(1);
 	
+
 	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
 	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
 	// mlx_key_hook(general->win, ft_keyhook, general);
