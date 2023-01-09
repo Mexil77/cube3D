@@ -3,41 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   draw_pov.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/25 19:01:11 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:49:10 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-static void		draw_column(t_general *g, double dist, int x, float angle)
+//////////////// TODO: BORRAR /////////////////////////////////
+
+#include <sys/time.h>
+
+static double	remunder(double number, double base)
+{
+	double result;
+	
+	result = remainder(number, base);
+	if (result < 0)
+		return (result + base);
+	return (result);
+}
+
+static void	draw_wall(t_general *g, int start, int wall_height, t_coll *coll, int x)
+{
+	int	y_drawn;
+	int	drawn_limit;
+	int	y_perc_text;
+	int	y_perc_text_old;
+	int	x_perc_text;
+	int	color;
+	double y_perc;
+	double y_perc_increase;
+
+	y_drawn = start;
+	x_perc_text = (int)(coll->index * g->wall_img[coll->orientation].img_width);
+	if (y_drawn < 0)
+		y_drawn = 0;
+	y_perc = (double)(y_drawn - start)/wall_height;
+	y_perc_increase = (double)1/wall_height;
+	y_perc_text_old = -1;
+	drawn_limit = wall_height + start;
+	if (drawn_limit > WINDOW_HEIGHT)
+		drawn_limit = WINDOW_HEIGHT;
+	while (y_drawn < drawn_limit)
+	{
+		y_perc_text = (int)(y_perc * g->wall_img[coll->orientation].img_height);
+		if (y_perc_text != y_perc_text_old)
+		{
+			color = wall_color(&g->wall_img[coll->orientation], x_perc_text, y_perc_text);
+			y_perc_text_old = y_perc_text;
+		}
+		draw_pixel(&g->img_pov, x, y_drawn++, color);
+		y_perc += y_perc_increase;
+	}
+}
+
+static void		draw_ceiling_n_floor(t_general *g, int end, int x)
+{
+	int	y_drawn;
+
+	y_drawn = 0;
+	while (y_drawn < end)
+		draw_pixel(&g->img_pov, x, y_drawn++, g->color_celing);
+	y_drawn = WINDOW_HEIGHT - end;
+	while (y_drawn < WINDOW_HEIGHT)
+		draw_pixel(&g->img_pov, x, y_drawn++, g->color_floor);
+	
+}
+
+static void		draw_column(t_general *g, double dist, int x, float angle, t_coll *coll)
 {
 	int	wall_height;
 	int	wall_top;
-	int	wall_bottom;
-	int	y_drawn;
+	//int	wall_bottom;
+	//int	y_drawn;
+
+	//(void)coll;
 
 	//angle = parse_angle(angle);
 	if (angle < 360)
 		angle += 360;
 	
-	wall_height = 0;
-	if (dist >= 1)
-		wall_height = (int)round(TILE_SIZE * WINDOW_HEIGHT / (dist * cos(to_rad(angle))));
-	if (wall_height > WINDOW_HEIGHT || dist < 1)
-		wall_height = WINDOW_HEIGHT;
-	//printf("%04dth ray: My dist is %f, my angle cos is %f and their product is %f so wall_height is %d\n\n", x, dist, cos(to_rad(angle)), (dist * cos(to_rad(angle))), wall_height);
+	//if (dist >= 1)
+	wall_height = (int)round(TILE_SIZE * WINDOW_HEIGHT / (dist * cos(to_rad(angle))));
+	if (wall_height < WINDOW_HEIGHT)
+		draw_ceiling_n_floor(g, WINDOW_HEIGHT / 2 - wall_height / 2, x);
 	wall_top = WINDOW_HEIGHT / 2 - wall_height / 2;
-	wall_bottom = wall_top + wall_height;
-	y_drawn = 0;
-	while (y_drawn < wall_top)
-		draw_pixel(&g->img_pov, x, y_drawn++, g->color_celing);
-	while (y_drawn < wall_bottom)
-		draw_pixel(&g->img_pov, x, y_drawn++, WALL_COLOR);
-	while (y_drawn < WINDOW_HEIGHT)
-		draw_pixel(&g->img_pov, x, y_drawn++, g->color_floor);
+	draw_wall(g, wall_top, wall_height, coll, x);
+	// if (wall_height > WINDOW_HEIGHT)
+	// 	wall_height = WINDOW_HEIGHT;
+	// //printf("%04dth ray: My dist is %f, my angle cos is %f and their product is %f so wall_height is %d\n\n", x, dist, cos(to_rad(angle)), (dist * cos(to_rad(angle))), wall_height);
+	// wall_top = WINDOW_HEIGHT / 2 - wall_height / 2;
+	// wall_bottom = wall_top + wall_height;
+	// y_drawn = 0;
+	// while (y_drawn < wall_top)
+	// 	draw_pixel(&g->img_pov, x, y_drawn++, g->color_celing);
+	// // while (y_drawn < wall_bottom) {
+	// // 	//printf("coll->index is %f\n", coll->index);
+	// // 	draw_pixel(&g->img_pov, x, y_drawn, WALL_COLOR);
+	// // 	y_drawn++;
+	// // }
+	// y_drawn = wall_bottom;
+	// while (y_drawn < WINDOW_HEIGHT)
+	// 	draw_pixel(&g->img_pov, x, y_drawn++, g->color_floor);
 }
 
 static double	dist(double x_origin, double y_origin, double x_collision, double y_collision)
@@ -55,13 +125,13 @@ static double	dist(double x_origin, double y_origin, double x_collision, double 
 	return (result);
 }
 
-static double find_coll_hor(t_general *g, float ang)
+static double find_coll_hor(t_general *g, float ang, t_coll *hor_coll)
 {
 	double	ray_x;
 	double	ray_y;
 	
 	if (ang == 0 || ang == 180)
-		return MAXFLOAT;
+		return MAXFLOAT; //TODO: SUSTITUIR ESTO POR MAX DOUBLE
 	if (ang > 180)
 	{
 		ray_y = (int)(g->posy / TILE_SIZE) * TILE_SIZE/*- 0.001*/;
@@ -74,6 +144,8 @@ static double find_coll_hor(t_general *g, float ang)
 			
 			//printf("%c\n", tile_value(g, (int)ray_x, (int)ray_y));
 		}
+		hor_coll->index = (remunder(ray_x, TILE_SIZE)) / TILE_SIZE;
+		hor_coll->orientation = 1;
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		//draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x00FF0000);
 	}
@@ -92,66 +164,25 @@ static double find_coll_hor(t_general *g, float ang)
 			//sleep(1000);
 			//printf("%c\n", tile_value(g, (int)ray_x, (int)ray_y));
 		}
+		hor_coll->index = (TILE_SIZE - (remunder(ray_x, TILE_SIZE))) / TILE_SIZE;
+		hor_coll->orientation = 0;
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		// draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x00FF0000);
 	}
 }
 
-// static float find_coll_hor_2(t_general *g, float ang)
-// {
-// 	float	ray_x;
-// 	float	ray_y;
-// 	float	incr_x;
-// 	float	incr_y;
-// 	float	distance;
-// 	float	incr_dist;
-// 	int		deviation = 0;
-	
-// 	if (ang == 0 || ang == 180)
-// 		return MAXFLOAT;
-// 	if (ang > 180)
-// 	{
-// 		ray_y = (int)(g->posy / TILE_SIZE) * TILE_SIZE/*- 0.001*/;
-// 		ray_x = g->posx - (1/tan(to_rad(ang)) * (g->posy - ray_y));
-		
-// 		incr_y = -TILE_SIZE;
-// 		incr_x = -(1/tan(to_rad(ang)) * TILE_SIZE);
-// 		deviation = 1;
-
-// 	}
-// 	else
-// 	{
-// 		ray_y = (int)(g->posy / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-// 		ray_x = g->posx + (1/tan(to_rad(ang)) * (ray_y - g->posy));
-// 		incr_y = TILE_SIZE;
-// 		incr_x = (1/tan(to_rad(ang)) * TILE_SIZE);
-
-// 	}
-// 	distance = dist(g->posx, g->posy, ray_x, ray_y);
-// 	incr_dist = dist(0, 0, incr_x, incr_y);
-// 	while (tile_value(g, (int)ray_x, (int)ray_y - deviation) == '0')
-// 	{
-// 		ray_x += incr_x;
-// 		ray_y += incr_y;
-// 		distance += incr_dist; 
-// 	}
-// 	return distance;
-// }
-
-static double find_coll_vert(t_general *g, float ang)
+static double find_coll_vert(t_general *g, float ang, t_coll *vert_coll)
 {
 	double	ray_x;
 	double	ray_y;
 	
 	if (ang == 90 || ang == 270)
-		return MAXFLOAT;
+		return MAXFLOAT; //TODO: SUSTITUIR ESTO POR MAX DOUBLE
 	if (ang > 90 && ang < 270)
 	{
 		
-		ray_x = (int)(g->posx / TILE_SIZE) * TILE_SIZE/*- 0.001*/;
+		ray_x = (int)(g->posx / TILE_SIZE) * TILE_SIZE;
 		ray_y = g->posy - (tan(to_rad(ang)) * (g->posx - ray_x));
-		// h1 = dist(g->posx, g->posy, ray_x, ray_y);
-		// h2 = bla bla bla TODO: LA APUESTA SUPER INFERNAL
 		//printf("	player position is %f x and %f y, ray ang is %f, 1st vert collision is %f x and %f y\n", g->posx, g->posy, ang, ray_x, ray_y);
 		while (tile_value(g, (int)ray_x - 1, (int)ray_y) == '0')
 		{
@@ -161,6 +192,8 @@ static double find_coll_vert(t_general *g, float ang)
 			//sleep(1000);
 			//printf("%c\n", tile_value(g, (int)ray_x, (int)ray_y));
 		}
+		vert_coll->index = (TILE_SIZE - (remunder(ray_y, TILE_SIZE))) / TILE_SIZE;
+		vert_coll->orientation = 3;
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		// draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x000000FF);
 	}
@@ -178,52 +211,23 @@ static double find_coll_vert(t_general *g, float ang)
 			//sleep(1000);
 			//printf("%c\n", tile_value(g, (int)ray_x, (int)ray_y));
 		}
+		vert_coll->index = (remunder(ray_y, TILE_SIZE)) / TILE_SIZE;
+		vert_coll->orientation = 2;
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		// draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x000000FF);
 		
 	}
 }
 
-// static float find_coll_vert_2(t_general *g, float ang)
-// {
-// 	float	ray_x;
-// 	float	ray_y;
-// 	float	incr_x;
-// 	float	incr_y;
-// 	float	distance;
-// 	float	incr_dist;
-// 	int		deviation = 0;
-	
-// 	if (ang == 90 || ang == 270)
-// 		return MAXFLOAT;
-// 	if (ang > 90 && ang < 270)
-// 	{
-// 		ray_x = (int)(g->posx / TILE_SIZE) * TILE_SIZE/*- 0.001*/;
-// 		ray_y = g->posy - (tan(to_rad(ang)) * (g->posx - ray_x));
-// 		// h2 = bla bla bla TODO: LA APUESTA SUPER INFERNAL
-// 		//printf("	player position is %f x and %f y, ray ang is %f, 1st vert collision is %f x and %f y\n", g->posx, g->posy, ang, ray_x, ray_y);
-// 		incr_x = -TILE_SIZE;
-// 		incr_y = -(tan(to_rad(ang)) * TILE_SIZE);
-// 		deviation = 1;
-// 	}
-// 	else
-// 	{
-// 		ray_x = (int)(g->posx / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-// 		ray_y = g->posy + (tan(to_rad(ang)) * (ray_x - g->posx));
-// 		incr_x = TILE_SIZE;
-// 		incr_y = (tan(to_rad(ang)) * TILE_SIZE);
-		
-// 	}
-// 	distance = dist(g->posx, g->posy, ray_x, ray_y);
-// 	incr_dist = dist(0, 0, incr_x, incr_y);
-// 	while (tile_value(g, (int)ray_x - deviation, (int)ray_y) == '0')
-// 	{
-// 		ray_x += incr_x;
-// 		ray_y += incr_y;
-// 		distance += incr_dist; 
-// 	}
-// 	return distance;
-// }
+//////////////// TODO: BORRAR /////////////////////////////////
+
+int	get_time(struct timeval *time, int t_start)
+{
+	gettimeofday(time, NULL);
+	return ((time->tv_sec * 1000 + time->tv_usec / 1000) - t_start);
+}
+
+/////////////////////////////////////////////////
 
 void	draw_pov(t_general *g)
 {
@@ -231,28 +235,44 @@ void	draw_pov(t_general *g)
 	int		numrays;
 	float	increment;
 
-	float	x_dist;
-	float	y_dist;
+	double	x_dist;
+	double	y_dist;
 
+	t_coll	hor_coll;
+	t_coll	vert_coll;
+
+	
 
 	numrays = -1;
 	ang = g->ang - PLAYER_FOV / 2;
 	if (ang < 0)
 		ang += 360;
 	//printf("My starting angle is %f\n", ang);
-	increment = (float)PLAYER_FOV / WINDOW_WIDTH;
+	increment = (float)PLAYER_FOV / WINDOW_WIDTH; // TODO: Esto puede hacerse solo una vez
 	//printf("My increment is %f\n", increment);
+
+	//////////////// TODO: BORRAR ////////////////////
+	
+	// struct timeval	time;
+	// int	time_start;
+	// time_start = get_time(&time, 0);
+
+	/////////////////////////////////////////////////
+
 	while (++numrays < WINDOW_WIDTH)
 	{
 		ang += increment;
 		if (ang >= 360)
 			ang -= 360;
-		y_dist = find_coll_hor(g, ang);
-		x_dist = find_coll_vert(g, ang);
+		y_dist = find_coll_hor(g, ang, &hor_coll);
+		x_dist = find_coll_vert(g, ang, &vert_coll);
 		if (x_dist < y_dist)
-			draw_column(g, x_dist, numrays, g->ang - ang);
+			draw_column(g, x_dist, numrays, g->ang - ang, &vert_coll);
 		else
-			draw_column(g, y_dist, numrays, g->ang - ang);
+			draw_column(g, y_dist, numrays, g->ang - ang, &hor_coll);
 		//printf("%zuth ray: My angle is %f\n", numrays, ang);
 	}
+	
+	//printf("This frame costed me %d miliseconds\n", get_time(&time, time_start));	// TODO: BORRAR
+	
 }

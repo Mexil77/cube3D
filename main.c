@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 19:36:45 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:17:09 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	init_struct(t_general *g)
 	g->game = true;
 	g->frame = 0; //DUDA: POR QUÉ ESTO? YA ES CERO
 	g->ang = 0;
-	g->move_speed = 4;
+	g->move_speed = 6;
 	g->rotate_speed = 4;
 
 	//SOBRESCRITURA DE LA POSICIÓN DEL JUGADOR PARA PRUEBAS DE RAYCAST
-	g->posx = 1535.484375;
-	g->posy = 384.378906;
-	g->ang = 320;
+	// g->posx = 1535.484375;
+	// g->posy = 384.378906;
+	// g->ang = 320;
 	
 }
 
@@ -104,7 +104,12 @@ int	main(int argc, char **argv)
 	parse_map(general, argv[1]);
 	init_struct(general);
 	init_window(general);
-	// print_general(general);
+	print_general(general);
+
+	test_image(general);
+
+	//exit(1);
+	
 	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
 	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
 	// mlx_key_hook(general->win, ft_keyhook, general);
