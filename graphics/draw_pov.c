@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2023/01/08 19:49:10 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 21:33:54 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 //////////////// TODO: BORRAR /////////////////////////////////
 
 #include <sys/time.h>
+
+///////////////////////////////
 
 static double	remunder(double number, double base)
 {
@@ -60,6 +62,40 @@ static void	draw_wall(t_general *g, int start, int wall_height, t_coll *coll, in
 	}
 }
 
+static void	draw_door(t_general *g, int start, int wall_height, t_coll *coll, int x)
+{
+	int	y_drawn;
+	int	drawn_limit;
+	int	y_perc_text;
+	int	y_perc_text_old;
+	int	x_perc_text;
+	int	color;
+	double y_perc;
+	double y_perc_increase;
+
+	y_drawn = start;
+	x_perc_text = (int)(coll->index * TILE_SIZE);
+	if (y_drawn < 0)
+		y_drawn = 0;
+	y_perc = (double)(y_drawn - start)/wall_height;
+	y_perc_increase = (double)1/wall_height;
+	y_perc_text_old = -1;
+	drawn_limit = wall_height + start;
+	if (drawn_limit > WINDOW_HEIGHT)
+		drawn_limit = WINDOW_HEIGHT;
+	while (y_drawn < drawn_limit)
+	{
+		y_perc_text = (int)(y_perc * g->door_img.img_height);
+		if (y_perc_text != y_perc_text_old)
+		{
+			color = wall_color(&g->door_img, x_perc_text, y_perc_text);
+			y_perc_text_old = y_perc_text;
+		}
+		draw_pixel(&g->img_pov, x, y_drawn++, color);
+		y_perc += y_perc_increase;
+	}
+}
+
 static void		draw_ceiling_n_floor(t_general *g, int end, int x)
 {
 	int	y_drawn;
@@ -91,7 +127,10 @@ static void		draw_column(t_general *g, double dist, int x, float angle, t_coll *
 	if (wall_height < WINDOW_HEIGHT)
 		draw_ceiling_n_floor(g, WINDOW_HEIGHT / 2 - wall_height / 2, x);
 	wall_top = WINDOW_HEIGHT / 2 - wall_height / 2;
-	draw_wall(g, wall_top, wall_height, coll, x);
+	if (coll->object == '1')
+		draw_wall(g, wall_top, wall_height, coll, x);
+	else if (coll->object == '3')
+		draw_door(g, wall_top, wall_height, coll, x);
 	// if (wall_height > WINDOW_HEIGHT)
 	// 	wall_height = WINDOW_HEIGHT;
 	// //printf("%04dth ray: My dist is %f, my angle cos is %f and their product is %f so wall_height is %d\n\n", x, dist, cos(to_rad(angle)), (dist * cos(to_rad(angle))), wall_height);
@@ -146,6 +185,7 @@ static double find_coll_hor(t_general *g, float ang, t_coll *hor_coll)
 		}
 		hor_coll->index = (remunder(ray_x, TILE_SIZE)) / TILE_SIZE;
 		hor_coll->orientation = 1;
+		hor_coll->object = tile_value(g, (int)ray_x, (int)ray_y - 1);
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		//draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x00FF0000);
 	}
@@ -166,6 +206,7 @@ static double find_coll_hor(t_general *g, float ang, t_coll *hor_coll)
 		}
 		hor_coll->index = (TILE_SIZE - (remunder(ray_x, TILE_SIZE))) / TILE_SIZE;
 		hor_coll->orientation = 0;
+		hor_coll->object = tile_value(g, (int)ray_x, (int)ray_y);
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		// draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x00FF0000);
 	}
@@ -194,6 +235,7 @@ static double find_coll_vert(t_general *g, float ang, t_coll *vert_coll)
 		}
 		vert_coll->index = (TILE_SIZE - (remunder(ray_y, TILE_SIZE))) / TILE_SIZE;
 		vert_coll->orientation = 3;
+		vert_coll->object = tile_value(g, (int)ray_x - 1, (int)ray_y);
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		// draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x000000FF);
 	}
@@ -213,6 +255,7 @@ static double find_coll_vert(t_general *g, float ang, t_coll *vert_coll)
 		}
 		vert_coll->index = (remunder(ray_y, TILE_SIZE)) / TILE_SIZE;
 		vert_coll->orientation = 2;
+		vert_coll->object = tile_value(g, (int)ray_x, (int)ray_y);
 		return dist(g->posx, g->posy, ray_x, ray_y);
 		// draw_player(&g->img_pov, (int)ray_x, (int)ray_y, 0x000000FF);
 		

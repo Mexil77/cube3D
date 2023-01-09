@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:45:10 by vguttenb          #+#    #+#             */
-/*   Updated: 2023/01/08 20:17:29 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 21:29:51 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ void	test_image(t_general *g) {
 	
 	g->wall_img[3].addr = mlx_get_data_addr(g->wall_img[3].img, &g->wall_img[3].bits_per_pixel, &g->wall_img[3].line_length, &g->wall_img[3].endian);
 	// printf("image: %p\nbits_per_pixel: %d\nsize_line: %d\nendian: %d\n", g->wall_img[3].addr, g->wall_img[3].bits_per_pixel, g->wall_img[3].line_length, g->wall_img[3].endian);
+	
+	g->door_img.img = mlx_xpm_file_to_image(g->mlx, "./res/door_sprite.xpm", &g->door_img.img_width, &g->door_img.img_height);
+	// printf("img: %p\nimg_height: %d\nimg_width: %d\n", g->door_img.img, g->door_img.img_height, g->door_img.img_width);
+	
+	g->door_img.addr = mlx_get_data_addr(g->door_img.img, &g->door_img.bits_per_pixel, &g->door_img.line_length, &g->door_img.endian);
+	// printf("image: %p\nbits_per_pixel: %d\nsize_line: %d\nendian: %d\n", g->door_img.addr, g->door_img.bits_per_pixel, g->door_img.line_length, g->door_img.endian);
 
 	
 }

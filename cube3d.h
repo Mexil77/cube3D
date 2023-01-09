@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/01/08 19:25:45 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/09 21:01:16 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_img {
 typedef struct	s_coll {
 	double	index;
 	int		orientation;
+	char	object;
 }				t_coll;
 
 typedef struct	s_minimap
@@ -100,6 +101,7 @@ typedef struct s_general
 	struct s_img	img_pov;
 	struct s_img	img_minimap;
 	struct s_img	wall_img[4];
+	struct s_img	door_img;
 }	t_general;
 
 /* Parse */
