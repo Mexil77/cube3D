@@ -1,7 +1,7 @@
 NO ./res/bookshelf.xpm
 SO ./res/bricksx64.xpm
 WE ./res/bookshelf.xpm
-EA ./res/bookshelf.xpm
+EA ./res/bricksx64.xpm
 
 F 25,95,24
 C 50,100,250

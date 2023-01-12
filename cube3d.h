@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/01/09 21:01:16 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:51:30 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef struct	s_img {
 	int		img_height;
 }				t_img;
 
+typedef struct	s_doorc {
+	int		x_coord;
+	int		y_coord;
+	int		state;
+	struct sdoorc	*next;
+}				t_doorc;
+
 typedef struct	s_coll {
 	double	index;
 	int		orientation;
@@ -101,7 +108,8 @@ typedef struct s_general
 	struct s_img	img_pov;
 	struct s_img	img_minimap;
 	struct s_img	wall_img[4];
-	struct s_img	door_img;
+	struct s_img	door_sprite;
+	struct s_doorc	*door_counters;
 }	t_general;
 
 /* Parse */
@@ -122,6 +130,8 @@ float	to_rad(float grad);
 void	print_double_pointer(char **double_pointer);
 size_t	double_pointer_len(char **double_pointer);
 int		ft_getcolor(int t, int r, int g, int b);
+t_doorc *new_door_count(int x, int y);
+t_doorc *add_door_count(t_doorc *list, int x, int y);
 
 /* Validations */
 void	get_caracter_pos(t_general *g);
