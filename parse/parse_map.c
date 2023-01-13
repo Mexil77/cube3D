@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/01/12 21:56:37 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:21:50 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,65 @@ void	parse_map(t_general *g, char *file_name)
 		printf("Mapa Invalido\n");
 	fill_data(g);
 	get_caracter_pos(g);
+}
+
+bool	get_texture(t_general *g, char *line, char *identifier, int text_index)
+{
+	if (ft_strncmp(line, identifier, 2))
+		return false;
+	line += 2;
+	while (is_empty_space(*line))
+		line++;
+	
+}
+
+bool	check_textures(t_general *g, int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line && is_empty_line(line))
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (!line || !get_texture(g, line, "NO", 0))
+		return (false);
+	free(line);
+	line = get_next_line(fd);
+	if (!line || !get_texture(g, line, "SO", 1))
+		return (false);
+	free(line);
+	line = get_next_line(fd);
+	if (!line || !get_texture(g, line, "WE", 2))
+		return (false);
+	free(line);
+	line = get_next_line(fd);
+	if (!line || !get_texture(g, line, "EA", 3))
+		return (false);
+	return (true);
+}
+
+bool	is_valid_map(t_general *g, char *file_name, int *map_height, int *map_width)
+{
+	int		fd;
+	char	*line;
+	int		index;
+
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return (false);
+	index = 0;
+	if (check_textures(g, fd))
+		return (true);
+}
+
+void	parse_map(t_general *g, char *file_name)
+{
+	int	map_width;
+	int	map_height;
+
+	map_height = 0;
+	map_width = 0;
+	if (is_valid_map(g, file_name, &map_height, &map_width));
 }
