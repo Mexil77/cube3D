@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:32:23 by vguttenb          #+#    #+#             */
-/*   Updated: 2023/01/08 20:15:38 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:38:50 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	valid_map_char(char c)
 {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == '0' || c == '1' || c == '3')
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == '0'
+		|| c == '1' || c == '3')
 		return (true);
 	return (false);
 }

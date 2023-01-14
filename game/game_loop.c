@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/15 19:52:23 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:15:46 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	calc_position(t_general *g)
 
 	if (g->rotate_dir != 0)
 		g->ang = parse_angle(g->ang + g->rotate_dir * g->rotate_speed);
-	//printf("Angle now is %d\n", g->ang);
 	if (!g->move_dir)
 		return ;
 	xprog = g->posx;
@@ -43,14 +42,7 @@ void	calc_position(t_general *g)
 
 void	new_frame(t_general *g)
 {
-	calc_position(g); // CALCULAMOS EL MOVIMIENTO
-
-	//SOLUCIÓN PARA VER EL MAPA
-	
-	//draw_map(g, &g->img_pov, 0, 0); // DIBUJAMOS EL MINIMAPA
-	//draw_player(&g->img_pov, (int)g->posx, (int)g->posy, PLAYER_COLOR);
-	//draw_fan(&g->img_pov, g);
-
+	calc_position(g);
 	draw_pov(g);
 	draw_minimap(&g->img_pov, g, 0, 0);
 	mlx_put_image_to_window(g->mlx, g->win, g->img_pov.img, 0, 0);
@@ -65,13 +57,3 @@ int	game_loop(t_general *g)
 		new_frame(g);
 	return (0);
 }
-
-// int	game_loop(t_general *g) // SLOW MOTION
-// {
-// 	if (g->frame == 1000) {
-// 		new_frame(g);
-// 		g->frame = 0;
-// 	}
-// 	g->frame++;
-// 	return (0);
-// }

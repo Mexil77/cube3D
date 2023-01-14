@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/30 14:01:05 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:55:56 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@
 # define PLAYER_FOV 60
 # define PLAYER_SIGHT 200
 
-# define MINIMAP_SCALE 2 // NECESITA SER MAYOR QUE 1 (Y A SER POSIBLE POTENCIA DE 2), SI NO HAY QUE HACER FLOAT X_DRAWN E Y_DRAWN EN DRAW_MINIMAP.
+# define MINIMAP_SCALE 2
 # define MINIMAP_SIZE 192
 
-#define WALL_COLOR 0x00000000
+# define WALL_COLOR 0x00000000
 //#define WALL_COLOR 0x00C0C0C0
-#define SIGHT_COLOR 0x00FFFFFF
-#define PLAYER_COLOR 0x000000FF
+# define SIGHT_COLOR 0x00FFFFFF
+# define PLAYER_COLOR 0x000000FF
 
-typedef struct	s_img {
+typedef struct s_img {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -56,18 +56,15 @@ typedef struct	s_img {
 	int		img_height;
 }				t_img;
 
-typedef struct	s_coll {
+typedef struct s_coll {
 	double	index;
 	int		orientation;
 }				t_coll;
 
-typedef struct	s_minimap
+typedef struct s_minimap
 {
-	//PÍXELES DEL MAPA DESDE LOS QUE VAMOS A EMPEZAR A DIBUJAR
 	float	x_map_start;
 	float	y_map_start;
-
-	//COORDENADAS EN LAS QUE HAY QUE DIBUJAR AL PERSONAJE DENTRO DEL MINIMAP
 	int		x_player;
 	int		y_player;
 }				t_minimap;
@@ -163,6 +160,18 @@ void	draw_pov_diagn(t_general *g);
 
 void	test_image(t_general *g);
 
-int	wall_color(t_img *img, int	x, int y);
+/* parse_map */
+size_t	leng_heigth_file(char *file_name);
+void	count_map(t_general *g);
+void	fill_map(t_general *g);
+
+/* parse_map2 */
+char	**file_to_map(char *file_name);
+void	parse_map(t_general *g, char *file_name);
+
+/* print_general */
+void	print_general(t_general *g);
+
+int		wall_color(t_img *img, int x, int y);
 
 #endif

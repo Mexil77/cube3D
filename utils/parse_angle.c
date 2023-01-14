@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_angle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:25:54 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/07/31 16:52:44 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:38:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-int	parse_angle(int angle) 
+int	parse_angle(int angle)
 {
 	if (angle < 0)
 		return (angle + 360);
