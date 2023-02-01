@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/18 20:55:25 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:06:42 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,9 +241,9 @@ void	draw_pov_diagn(t_general *g)
 	if (ang < 0)
 		ang += 360;
 	//printf("My starting angle is %f\n", ang);
-	increment = (float)PLAYER_FOV / WINDOW_WIDTH;
+	increment = (double)PLAYER_FOV / WINDOW_WIDTH;
 	//printf("My increment is %f\n", increment);
-	printf("Player is %f x, %f y and %d angle\n\n", g->posx, g->posy, g->ang);
+	printf("Player is %f x, %f y and %f angle\n\n", g->posx, g->posy, g->ang);
 	while (++numrays < WINDOW_WIDTH)
 	{
 		ang += increment;

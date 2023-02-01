@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/01/12 21:52:12 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:06:52 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	ft_keyrelease(int keycode, t_general *g)
 	return (0);
 }
 
+
+
 int	main(int argc, char **argv)
 {
 	t_general	*general;
@@ -106,6 +108,9 @@ int	main(int argc, char **argv)
 	parse_map(general, argv[1]);
 	init_struct(general);
 	init_window(general);
+	
+	general->door_counters = get_door_counters(general);
+	
 	print_general(general);
 
 	test_image(general);

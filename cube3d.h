@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/01/12 21:51:30 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:31:49 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 
-# define PLAYER_FOV 60
+# define PLAYER_FOV 80
 # define PLAYER_SIGHT 200
 
 # define MINIMAP_SCALE 2 // NECESITA SER MAYOR QUE 1 (Y A SER POSIBLE POTENCIA DE 2), SI NO HAY QUE HACER FLOAT X_DRAWN E Y_DRAWN EN DRAW_MINIMAP.
@@ -60,7 +60,7 @@ typedef struct	s_doorc {
 	int		x_coord;
 	int		y_coord;
 	int		state;
-	struct sdoorc	*next;
+	struct s_doorc	*next;
 }				t_doorc;
 
 typedef struct	s_coll {
@@ -101,14 +101,14 @@ typedef struct s_general
 	int				move_dir;
 	int				rotate_dir;
 	size_t			frame;
-	int				ang;
+	double			ang;
 	int				move_speed;
 	int				rotate_speed;
 	int				projection_dist;
 	struct s_img	img_pov;
 	struct s_img	img_minimap;
 	struct s_img	wall_img[4];
-	struct s_img	door_sprite;
+	struct s_img	door_img;
 	struct s_doorc	*door_counters;
 }	t_general;
 
@@ -126,12 +126,11 @@ int		close_red_cross(t_general *g);
 int		parse_angle(int angle);
 char	tile_value(t_general *g, int x_coord, int y_coord);
 void	close_window(t_general *g);
-float	to_rad(float grad);
+double	to_rad(double grad);
 void	print_double_pointer(char **double_pointer);
 size_t	double_pointer_len(char **double_pointer);
 int		ft_getcolor(int t, int r, int g, int b);
-t_doorc *new_door_count(int x, int y);
-t_doorc *add_door_count(t_doorc *list, int x, int y);
+t_doorc *get_door_counters(t_general *g);
 
 /* Validations */
 void	get_caracter_pos(t_general *g);

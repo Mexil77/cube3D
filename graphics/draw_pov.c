@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2023/01/09 21:33:54 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:30:57 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,7 +274,7 @@ int	get_time(struct timeval *time, int t_start)
 
 void	draw_pov(t_general *g)
 {
-	float	ang;
+	double	ang;
 	int		numrays;
 	float	increment;
 
@@ -287,12 +287,22 @@ void	draw_pov(t_general *g)
 	
 
 	numrays = -1;
-	ang = g->ang - PLAYER_FOV / 2;
-	if (ang < 0)
-		ang += 360;
-	//printf("My starting angle is %f\n", ang);
-	increment = (float)PLAYER_FOV / WINDOW_WIDTH; // TODO: Esto puede hacerse solo una vez
-	//printf("My increment is %f\n", increment);
+	//ang = g->ang - PLAYER_FOV / 2;
+	// if (ang < 0)
+	// 	ang += 360;
+	// printf("My starting angle is %f\n", ang);
+	increment = (double)PLAYER_FOV / WINDOW_WIDTH; // TODO: Esto puede hacerse solo una vez
+	// printf("My increment is %f\n", increment);
+
+	//////////////// TODO: CORRECCIÓN ANTI FISH EYE ////////////////////
+
+	double max_fov = (WINDOW_WIDTH / 2) / (tan(to_rad(PLAYER_FOV / 2)) * 57.2958);
+
+	double first_angle = g->ang - PLAYER_FOV / 2;
+	if (first_angle < 0)
+		first_angle += 360;
+
+	/////////////////////////////////////////////////
 
 	//////////////// TODO: BORRAR ////////////////////
 	
@@ -304,7 +314,7 @@ void	draw_pov(t_general *g)
 
 	while (++numrays < WINDOW_WIDTH)
 	{
-		ang += increment;
+		ang  = first_angle + atan((numrays / max_fov) * 0.01745329251) * 57.2958;
 		if (ang >= 360)
 			ang -= 360;
 		y_dist = find_coll_hor(g, ang, &hor_coll);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/08/25 19:11:39 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:20:05 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	get_caracter_pos(t_general *g)
 				|| g->map[i][j] == 'W' || g->map[i][j] == 'E')
 			{
 				g->pos = g->map[i][j];
-				g->posx = (float)(j * TILE_SIZE + TILE_SIZE / 2);
-				g->posy = (float)(i * TILE_SIZE + TILE_SIZE / 2);
+				g->posx = (double)(j * TILE_SIZE + TILE_SIZE / 2);
+				g->posy = (double)(i * TILE_SIZE + TILE_SIZE / 2);
 			}
 		}
 	}
