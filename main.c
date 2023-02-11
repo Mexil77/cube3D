@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/01/18 19:06:52 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:21:31 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int	main(int argc, char **argv)
 	init_struct(general);
 	init_window(general);
 	
+	general->ray_separation = (double)PLAYER_FOV / (WINDOW_WIDTH - 1);
+
 	general->door_counters = get_door_counters(general);
 	
 	print_general(general);

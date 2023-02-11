@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/01/26 21:31:49 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:06:41 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <time.h>
 # include <math.h>
 # include <stdbool.h>
+# include <float.h>
 
 # ifndef TILE_SIZE
 #  define TILE_SIZE 64
@@ -64,6 +65,7 @@ typedef struct	s_doorc {
 }				t_doorc;
 
 typedef struct	s_coll {
+	double	dist;
 	double	index;
 	int		orientation;
 	char	object;
@@ -79,6 +81,16 @@ typedef struct	s_minimap
 	int		x_player;
 	int		y_player;
 }				t_minimap;
+
+typedef struct	s_stripe
+{
+	int				draw_start;
+	int				draw_end;
+	int				wall_height;
+	int				wall_top;
+	int				x_text_index;
+	struct s_img	*texture;
+}				t_stripe;
 
 typedef struct s_general
 {
@@ -110,6 +122,7 @@ typedef struct s_general
 	struct s_img	wall_img[4];
 	struct s_img	door_img;
 	struct s_doorc	*door_counters;
+	double			ray_separation;
 }	t_general;
 
 /* Parse */
