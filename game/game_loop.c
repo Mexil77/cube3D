@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:19:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/20 18:45:30 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:50:22 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,3 @@ int	game_loop(t_general *g)
 		new_frame(g);
 	return (0);
 }
-
-// int	game_loop(t_general *g) // SLOW MOTION
-// {
-// 	if (g->frame == 1000) {
-// 		new_frame(g);
-// 		g->frame = 0;
-// 	}
-// 	g->frame++;
-// 	return (0);
-// }
