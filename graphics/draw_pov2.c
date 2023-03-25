@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:42:47 by vguttenb          #+#    #+#             */
-/*   Updated: 2023/02/11 19:26:08 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:24:43 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static double	remunder(double number, double base)
 {
-	double result;
-	
+	double	result;
+
 	result = remainder(number, base);
 	if (result < 0)
 		return (result + base);
@@ -35,8 +35,8 @@ static void	draw_wall(t_general *g, t_stripe *stripe, t_coll *coll, int x)
 
 	y_draw = stripe->draw_start;
 	draw_limit = stripe->draw_end;
-	y_perc = (double)(y_draw - stripe->wall_top)/stripe->wall_height;
-	y_perc_increase = (double)1/stripe->wall_height;
+	y_perc = (double)(y_draw - stripe->wall_top) / stripe->wall_height;
+	y_perc_increase = (double)1 / stripe->wall_height;
 	x_text_index = stripe->x_text_index;
 	while (y_draw < draw_limit)
 	{
@@ -51,7 +51,7 @@ static void	draw_wall(t_general *g, t_stripe *stripe, t_coll *coll, int x)
 	}
 }
 
-static void		draw_ceiling_n_floor(t_general *g, int end, int x)
+static void	draw_ceiling_n_floor(t_general *g, int end, int x)
 {
 	int	y_draw;
 
@@ -63,13 +63,14 @@ static void		draw_ceiling_n_floor(t_general *g, int end, int x)
 		draw_pixel(&g->img_pov, x, y_draw++, g->color_floor);
 }
 
-static void		draw_column(t_general *g, int x, float angle, t_coll *coll)
+static void	draw_column(t_general *g, int x, float angle, t_coll *coll)
 {
 	t_stripe	stripe;
-	
+
 	if (angle < 360)
 		angle += 360;
-	stripe.wall_height = (int)round(TILE_SIZE * WINDOW_HEIGHT / (coll->dist * cos(to_rad(angle))));
+	stripe.wall_height = (int)round(TILE_SIZE * WINDOW_HEIGHT \
+									/ (coll->dist * cos(to_rad(angle))));
 	stripe.wall_top = WINDOW_HEIGHT / 2 - stripe.wall_height / 2;
 	if (coll->object == '1')
 		stripe.texture = &g->wall_img[coll->orientation];
@@ -106,6 +107,6 @@ void	draw_pov(t_general *g)
 			ang -= 360;
 		find_coll(g, ang, &coll);
 		draw_column(g, numrays, g->ang - ang, &coll);
-		ang  += g->ray_separation;
+		ang += g->ray_separation;
 	}
 }
