@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/02/11 19:06:41 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:28:30 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 
-# define PLAYER_FOV 80
+# define PLAYER_FOV 60
 # define PLAYER_SIGHT 200
 
 # define MINIMAP_SCALE 2 // NECESITA SER MAYOR QUE 1 (Y A SER POSIBLE POTENCIA DE 2), SI NO HAY QUE HACER FLOAT X_DRAWN E Y_DRAWN EN DRAW_MINIMAP.

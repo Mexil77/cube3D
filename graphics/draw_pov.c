@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:08:33 by vguttenb          #+#    #+#             */
-/*   Updated: 2023/01/26 21:30:57 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:34:09 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,11 +296,12 @@ void	draw_pov(t_general *g)
 
 	//////////////// TODO: CORRECCIÓN ANTI FISH EYE ////////////////////
 
-	double max_fov = (WINDOW_WIDTH / 2) / (tan(to_rad(PLAYER_FOV / 2)) * 57.2958);
+	//double max_fov = (WINDOW_WIDTH / 2) / (tan(to_rad(PLAYER_FOV / 2)) * 57.2958);
 
 	double first_angle = g->ang - PLAYER_FOV / 2;
 	if (first_angle < 0)
 		first_angle += 360;
+	ang = first_angle;
 
 	/////////////////////////////////////////////////
 
@@ -314,7 +315,8 @@ void	draw_pov(t_general *g)
 
 	while (++numrays < WINDOW_WIDTH)
 	{
-		ang  = first_angle + atan((numrays / max_fov) * 0.01745329251) * 57.2958;
+		//ang  = first_angle + atan((numrays / max_fov) * 0.01745329251) * 57.2958;
+		ang += increment;
 		if (ang >= 360)
 			ang -= 360;
 		y_dist = find_coll_hor(g, ang, &hor_coll);

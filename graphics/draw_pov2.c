@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:42:47 by vguttenb          #+#    #+#             */
-/*   Updated: 2023/03/20 19:24:43 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:29:39 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	draw_ceiling_n_floor(t_general *g, int end, int x)
 		draw_pixel(&g->img_pov, x, y_draw++, g->color_floor);
 }
 
-static void	draw_column(t_general *g, int x, float angle, t_coll *coll)
+static void	draw_column(t_general *g, int x, double angle, t_coll *coll)
 {
 	t_stripe	stripe;
 
