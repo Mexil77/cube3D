@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/25 17:25:00 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:38:59 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,14 @@
 # define PLAYER_FOV 60
 # define PLAYER_SIGHT 200
 
-# define MINIMAP_SCALE 2 // NECESITA SER MAYOR QUE 1 (Y A SER POSIBLE POTENCIA DE 2), SI NO HAY QUE HACER FLOAT X_DRAWN E Y_DRAWN EN DRAW_MINIMAP.
-# define MINIMAP_SIZE 192
+# define MM_SCALE 2
+# define MM_SIZE 192
 
-#define WALL_COLOR 0x00000000
-//#define WALL_COLOR 0x00C0C0C0
-#define SIGHT_COLOR 0x00FFFFFF
-#define PLAYER_COLOR 0x000000FF
+# define WALL_COLOR 0x00000000
+# define SIGHT_COLOR 0x00FFFFFF
+# define PLAYER_COLOR 0x000000FF
 
-typedef struct	s_img {
+typedef struct s_img {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -57,32 +56,22 @@ typedef struct	s_img {
 	int		img_height;
 }				t_img;
 
-typedef struct	s_doorc {
-	int		x_coord;
-	int		y_coord;
-	int		state;
-	struct s_doorc	*next;
-}				t_doorc;
-
-typedef struct	s_coll {
+typedef struct s_coll {
 	double	dist;
 	double	index;
 	int		orientation;
 	char	object;
 }				t_coll;
 
-typedef struct	s_minimap
+typedef struct s_minimap
 {
-	//PÍXELES DEL MAPA DESDE LOS QUE VAMOS A EMPEZAR A DIBUJAR
 	float	x_map_start;
 	float	y_map_start;
-
-	//COORDENADAS EN LAS QUE HAY QUE DIBUJAR AL PERSONAJE DENTRO DEL MINIMAP
 	int		x_player;
 	int		y_player;
 }				t_minimap;
 
-typedef struct	s_stripe
+typedef struct s_stripe
 {
 	int				draw_start;
 	int				draw_end;
@@ -120,8 +109,6 @@ typedef struct s_general
 	struct s_img	img_pov;
 	struct s_img	img_minimap;
 	struct s_img	wall_img[4];
-	struct s_img	door_img;
-	struct s_doorc	*door_counters;
 	double			ray_separation;
 }	t_general;
 
@@ -143,7 +130,9 @@ double	to_rad(double grad);
 void	print_double_pointer(char **double_pointer);
 size_t	double_pointer_len(char **double_pointer);
 int		ft_getcolor(int t, int r, int g, int b);
-t_doorc *get_door_counters(t_general *g);
+double	remunder(double number, double base);
+double	dist(double x_a, double y_a, double x_b, double y_b);
+int		pixel_color(t_img *img, int x, int y);
 
 /* Validations */
 void	get_caracter_pos(t_general *g);
@@ -159,12 +148,10 @@ void	ft_drawsquare(t_general *g, size_t x, size_t y, int color);
 int		ft_getcolor(int t, int r, int g, int b);
 void	ft_drawray(t_general *g, float ang, int color);
 void	ft_drawfan(t_general *g, int color);
-void	draw_map(t_general *g, t_img *img, int x, int y);
 void	draw_player(t_img *img, int x_pos, int y_pos, int color);
 void	draw_pixel(t_img *img, int x, int y, int color);
-void	draw_fan(t_img *img, t_general *g);
 void	draw_pov(t_general *g);
-void	draw_minimap(t_img *img, t_general *g, int x_start, int y_start);
+void	draw_minimap(t_img *img, t_general *g);
 
 /* Minimap */
 void	ft_minimap(t_general *g);
@@ -183,8 +170,6 @@ void	generate_pov(t_general *g);
 void	fill_data(t_general *g);
 
 /* Diagnose */
-void	draw_pov_diagn(t_general *g);
-
 void	test_image(t_general *g);
 
 int		wall_color(t_img *img, int x, int y);
@@ -199,5 +184,7 @@ void	fill_map(t_general *g);
 
 char	**file_to_map(char *file_name);
 void	parse_map(t_general *g, char *file_name);
+
+void	find_coll(t_general *g, double ray_angle, t_coll *coll);
 
 #endif
