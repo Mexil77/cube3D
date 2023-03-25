@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/25 16:28:30 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:25:00 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,17 @@ void	draw_pov_diagn(t_general *g);
 
 void	test_image(t_general *g);
 
-int	wall_color(t_img *img, int	x, int y);
+int		wall_color(t_img *img, int x, int y);
+
+/* parse_map */
+size_t	leng_heigth_file(char *file_name);
+void	count_map(t_general *g);
+bool	is_map(char *line);
+void	fill_map(t_general *g);
+
+/* Parse_map2 */
+
+char	**file_to_map(char *file_name);
+void	parse_map(t_general *g, char *file_name);
 
 #endif

@@ -3,21 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+         #
+#    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2023/01/18 19:20:06 by vguttenb         ###   ########.fr        #
+#    Updated: 2023/03/25 17:26:29 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	main.c														\
 			parse/parse_map.c parse/validations.c parse/fill_data.c		\
+			parse/parse_map2.c											\
 			utils/error.c utils/free_all.c								\
 			utils/parse_angle.c utils/tile_value.c utils/free_split.c	\
 			utils/valid_map_char.c utils/close_red_cross.c				\
 			utils/close_window.c utils/to_rad.c							\
 			utils/print_double_pointer.c utils/double_pointer_len.c		\
-			utils/get_color.c utils/get_door_counters.c											\
+			utils/get_color.c utils/get_door_counters.c					\
 			graphics/init_window.c										\
 			graphics/draw_pixel.c graphics/draw_map.c					\
 			graphics/draw_player.c graphics/draw_fan.c					\
