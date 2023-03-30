@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 02:59:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/30 06:06:05 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@ int	ft_keyhook(int keycode, t_general *g)
 		close_window(g);
 	return (0);
 }
-
-/*
-void	ft_leaks(void)
-{
-	system("leaks cube3d");
-}
-*/
 
 void	init_struct(t_general *g)
 {
@@ -82,24 +75,6 @@ int	ft_keyrelease(int keycode, t_general *g)
 	return (0);
 }
 
-/*
-void	print_general(t_general *g)
-{
-	printf("pos : %c\n", g->pos);
-	printf("posx : %f\n", g->posx);
-	printf("posy : %f\n", g->posy);
-	printf("w : %zu\n", g->map_width);
-	printf("h : %zu\n", g->map_height);
-	printf("no_texture : %s\n", g->no_texture);
-	printf("so_texture : %s\n", g->so_texture);
-	printf("we_texture : %s\n", g->we_texture);
-	printf("ea_texture : %s\n", g->ea_texture);
-	printf("color_floor : %d\n", g->color_floor);
-	printf("color_celing : %d\n", g->color_celing);
-	print_double_pointer(g->map);
-}
- */
-
 int	main(int argc, char **argv)
 {
 	t_general	*general;
@@ -120,4 +95,26 @@ int	main(int argc, char **argv)
 	free_all(general);
 	return (0);
 }
-// print_general(general);
+/*
+void	ft_leaks(void)
+{
+	system("leaks cube3d");
+}
+
+print_general(general);
+void	print_general(t_general *g)
+{
+	printf("pos : %c\n", g->pos);
+	printf("posx : %f\n", g->posx);
+	printf("posy : %f\n", g->posy);
+	printf("w : %zu\n", g->map_width);
+	printf("h : %zu\n", g->map_height);
+	printf("no_texture : %s\n", g->no_texture);
+	printf("so_texture : %s\n", g->so_texture);
+	printf("we_texture : %s\n", g->we_texture);
+	printf("ea_texture : %s\n", g->ea_texture);
+	printf("color_floor : %d\n", g->color_floor);
+	printf("color_celing : %d\n", g->color_celing);
+	print_double_pointer(g->map);
+
+} */

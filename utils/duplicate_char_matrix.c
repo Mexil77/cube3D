@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:43:30 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/29 23:45:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/30 05:59:28 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**duplicate_char_matrix(char **m)
 		while (m[i][++j] && j < ft_strlen(m[i]))
 		{
 			if (poss_caracter(m[i][j]))
-				dup[i][j] = '0';
+				dup[i][j] = '.';
 			else
 				dup[i][j] = m[i][j];
 		}

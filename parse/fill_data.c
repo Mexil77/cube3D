@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 04:01:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/25 17:17:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/30 05:09:54 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	fill_cordenate(t_general *g, size_t i, size_t *j, int opt)
 	{
 		if (!ft_strncmp(&g->file_char[i][*j], ".xpm", 4))
 		{
-			*j += 4;
+			*j += 3;
 			if (opt == 1)
-				g->no_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+				g->no_texture = ft_substr(g->file_char[i], ini, (*j + 1) - ini);
 			if (opt == 2)
-				g->so_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+				g->so_texture = ft_substr(g->file_char[i], ini, (*j + 1) - ini);
 			if (opt == 3)
-				g->we_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+				g->we_texture = ft_substr(g->file_char[i], ini, (*j + 1) - ini);
 			if (opt == 4)
-				g->ea_texture = ft_substr(g->file_char[i], ini, (*j) - ini);
+				g->ea_texture = ft_substr(g->file_char[i], ini, (*j + 1) - ini);
 		}
 	}
 	(*j)--;
@@ -89,6 +89,8 @@ void	fill_data(t_general *g)
 	size_t	i;
 	size_t	j;
 
+	g->color_floor = -1;
+	g->color_celing = -1;
 	i = -1;
 	while (g->file_char[++i])
 	{

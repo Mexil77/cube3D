@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 02:45:38 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/30 06:01:37 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,44 @@ void	replace_chars(char **map)
 	}
 }
 
+void	get_point_cords(char **map, size_t *x, size_t *y)
+{
+	size_t	i;
+	size_t	j;
+
+	i = -1;
+	while (++i < double_pointer_len(map))
+	{
+		j = -1;
+		while (++j < ft_strlen(map[0]))
+		{
+			if (map[i][j] == '.')
+			{
+				*y = i;
+				*x = j;
+				return ;
+			}
+		}
+	}
+}
+
 bool	validate_map(t_general *g)
 {
 	char	**aux;
 	bool	valid_map;
+	size_t	x_cero;
+	size_t	y_cero;
 
+	x_cero = 0;
+	y_cero = 0;
 	aux = duplicate_char_matrix(g->map);
-	valid_map = covered(aux, 9, 1);
+	get_point_cords(aux, &x_cero, &y_cero);
+	valid_map = covered(aux, x_cero, y_cero);
 	free_split(aux);
-	return (valid_map);
+	if (!valid_map)
+		return (valid_map);
+	return (g->color_floor > -1 && g->color_celing > -1 && g->ea_texture
+		&& g->no_texture && g->so_texture && g->we_texture);
 }
 
 void	get_caracter_pos(t_general *g)

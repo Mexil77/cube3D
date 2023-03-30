@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:18:59 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 02:47:37 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/30 04:15:36 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	parse_map(t_general *g, char *file_name)
 	g->file_char = file_to_map(file_name);
 	count_map(g);
 	fill_map(g);
+	fill_data(g);
 	if (!validate_map(g))
 	{
 		printf("Mapa Invalido\n");
 		free_all(g);
 		exit(0);
 	}
-	fill_data(g);
 	get_caracter_pos(g);
 	replace_chars(g->map);
 }
