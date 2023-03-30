@@ -6,39 +6,36 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/25 17:18:44 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:45:38 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-bool	is_cover(t_general *g, size_t x, size_t y)
-{
-	if (x > 0 && !valid_map_char(g->map[y][x - 1]))
-		return (false);
-	if (x < g->map_width - 1 && !valid_map_char(g->map[y][x + 1]))
-		return (false);
-	if (y > 0 && !valid_map_char(g->map[y - 1][x]))
-		return (false);
-	if (y < g->map_height - 1 && !valid_map_char(g->map[y + 1][x]))
-		return (false);
-	return (true);
-}
-
-bool	validate_map(t_general *g)
+void	replace_chars(char **map)
 {
 	size_t	i;
 	size_t	j;
 
 	i = -1;
-	while (++i < g->map_height)
+	while (++i < double_pointer_len(map))
 	{
 		j = -1;
-		while (g->map[i][++j] && j < g->map_width)
-			if (g->map[i][j] == '0' && !is_cover(g, j, i))
-				return (false);
+		while (++j < ft_strlen(map[0]))
+			if (poss_caracter(map[i][j]))
+				map[i][j] = '0';
 	}
-	return (true);
+}
+
+bool	validate_map(t_general *g)
+{
+	char	**aux;
+	bool	valid_map;
+
+	aux = duplicate_char_matrix(g->map);
+	valid_map = covered(aux, 9, 1);
+	free_split(aux);
+	return (valid_map);
 }
 
 void	get_caracter_pos(t_general *g)

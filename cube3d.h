@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/25 19:38:59 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:45:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,19 @@ void	fill_map(t_general *g);
 char	**file_to_map(char *file_name);
 void	parse_map(t_general *g, char *file_name);
 
+/* coll_finder */
 void	find_coll(t_general *g, double ray_angle, t_coll *coll);
+
+/* duplicate_char_matrix */
+void	print_matrix(char **m);
+bool	poss_caracter(char c);
+char	**duplicate_char_matrix(char **m);
+
+/* covered */
+bool	covered(char **m, size_t x, size_t y);
+bool	cover_char(char c);
+
+/* validations */
+void	replace_chars(char **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:17:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/25 17:24:35 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:21:08 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,21 @@ void	count_map(t_general *g)
 {
 	size_t	longest;
 	size_t	i;
+	bool	start_map;
 
 	longest = 0;
+	start_map = is_map(g->file_char[0]);
 	i = -1;
 	while (g->file_char[++i])
 	{
-		if (is_map(g->file_char[i]))
+		if (start_map)
 		{
 			g->map_height++;
 			if (ft_strlen(g->file_char[i]) - 1 > longest)
 				longest = ft_strlen(g->file_char[i]) - 1;
 		}
+		else
+			start_map = is_map(g->file_char[i + 1]);
 	}
 	g->map_width = longest;
 }
@@ -71,10 +75,9 @@ void	fill_map(t_general *g)
 	g->map = ft_calloc(sizeof(char *), g->map_height + 1);
 	if (!g->map)
 		return ;
-	i = -1;
+	i = double_pointer_len(g->file_char) - g->map_height - 1;
 	j = 0;
 	while (g->file_char[++i])
-		if (is_map(g->file_char[i]))
 			g->map[j++] = fill_line(g, g->file_char[i]);
 }
 
