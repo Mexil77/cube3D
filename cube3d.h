@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 02:45:32 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:56:43 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ typedef struct s_general
 	char			*ea_texture;
 	int				color_floor;
 	int				color_celing;
-	char			pos;
 	size_t			map_width;
 	size_t			map_height;
 	double			posx;

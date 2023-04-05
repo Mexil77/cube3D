@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 06:01:37 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:55:50 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	get_caracter_pos(t_general *g)
 {
 	size_t	i;
 	size_t	j;
-
+	char	*directions; 
+	
+	directions = "ESWN";
 	i = -1;
 	while (++i < g->map_height)
 	{
@@ -80,8 +82,8 @@ void	get_caracter_pos(t_general *g)
 		{
 			if (g->map[i][j] == 'N' || g->map[i][j] == 'S'
 				|| g->map[i][j] == 'W' || g->map[i][j] == 'E')
-			{
-				g->pos = g->map[i][j];
+			{			
+				g->ang = (ft_strchr(directions, g->map[i][j]) - directions) * 90;
 				g->posx = (float)(j * TILE_SIZE + TILE_SIZE / 2);
 				g->posy = (float)(i * TILE_SIZE + TILE_SIZE / 2);
 			}

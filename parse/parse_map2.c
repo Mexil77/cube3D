@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:18:59 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 04:15:36 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:42:05 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	parse_map(t_general *g, char *file_name)
 	fill_data(g);
 	if (!validate_map(g))
 	{
-		printf("Mapa Invalido\n");
+		printf("cub3D: error: Mapa Invalido\n");
 		free_all(g);
 		exit(0);
 	}

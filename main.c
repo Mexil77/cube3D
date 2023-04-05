@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 06:06:05 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:56:32 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	ft_leaks(void)
 print_general(general);
 void	print_general(t_general *g)
 {
-	printf("pos : %c\n", g->pos);
 	printf("posx : %f\n", g->posx);
 	printf("posy : %f\n", g->posy);
 	printf("w : %zu\n", g->map_width);
