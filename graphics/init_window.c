@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:29:34 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/25 18:12:48 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:08:41 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,6 @@ void	init_window(t_general *g)
 	g->img_pov.addr = mlx_get_data_addr(g->img_pov.img, \
 						&g->img_pov.bits_per_pixel, &g->img_pov.line_length, \
 						&g->img_pov.endian);
+	g->img_pov.img_height = WINDOW_HEIGHT;
+	g->img_pov.img_width = WINDOW_WIDTH;
 }

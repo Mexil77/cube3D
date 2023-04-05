@@ -1,0 +1,15 @@
+NO ./res/bookshelf.xpm 
+SO ./res/bricksx64.xpm
+WE ./res/bookshelf.xpm
+EA ./res/bricksx64.xpm
+
+F 180,56,200
+C 50,100,252
+
+1111111
+1000001
+1000001
+1001001
+1000001
+100E001
+1111111

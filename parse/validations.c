@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/05 19:55:50 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/04/05 21:29:47 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	get_caracter_pos(t_general *g)
 {
 	size_t	i;
 	size_t	j;
-	char	*directions; 
-	
-	directions = "ESWN";
+	char	*nesw;
+
+	nesw = "ESWN";
 	i = -1;
 	while (++i < g->map_height)
 	{
@@ -83,7 +83,7 @@ void	get_caracter_pos(t_general *g)
 			if (g->map[i][j] == 'N' || g->map[i][j] == 'S'
 				|| g->map[i][j] == 'W' || g->map[i][j] == 'E')
 			{			
-				g->ang = (ft_strchr(directions, g->map[i][j]) - directions) * 90;
+				g->ang = (ft_strchr(nesw, g->map[i][j]) - nesw) * 90;
 				g->posx = (float)(j * TILE_SIZE + TILE_SIZE / 2);
 				g->posy = (float)(i * TILE_SIZE + TILE_SIZE / 2);
 			}

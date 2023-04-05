@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/05 19:56:43 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/04/05 21:28:13 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define WALL_COLOR 0x00000000
 # define SIGHT_COLOR 0x00FFFFFF
 # define PLAYER_COLOR 0x000000FF
+
+# define PREC_DIST 12
 
 typedef struct s_img {
 	void	*img;
