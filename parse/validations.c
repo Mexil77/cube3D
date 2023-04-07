@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:20:18 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/05 21:29:47 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:49:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ bool	validate_map(t_general *g)
 	if (!valid_map)
 		return (valid_map);
 	return (g->color_floor > -1 && g->color_celing > -1 && g->ea_texture
-		&& g->no_texture && g->so_texture && g->we_texture);
+		&& g->no_texture && g->so_texture && g->we_texture
+		&& get_texture(g, &g->wall_img[0], g->no_texture)
+		&& get_texture(g, &g->wall_img[1], g->so_texture)
+		&& get_texture(g, &g->wall_img[2], g->we_texture)
+		&& get_texture(g, &g->wall_img[3], g->ea_texture));
 }
 
 void	get_caracter_pos(t_general *g)

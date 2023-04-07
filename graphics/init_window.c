@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:29:34 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/05 20:08:41 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:36:05 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_window(t_general *g)
 {
-	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cube3D");
 	if (!g->win)
 		error("Error de ventana", g);

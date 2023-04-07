@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:31:02 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/15 19:31:17 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:54:52 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_split(char **split)
 {
 	size_t	i;
 
+	if (!split)
+		return ;
 	i = -1;
 	while (split[++i])
 		free(split[i]);

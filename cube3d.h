@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/05 21:28:13 by vguttenb         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:59:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,5 +200,8 @@ bool	cover_char(char c);
 
 /* validations */
 void	replace_chars(char **map);
+
+/* main */
+bool	get_texture(t_general *g, t_img *image, char *texture_str);
 
 #endif
