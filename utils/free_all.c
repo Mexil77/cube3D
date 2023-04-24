@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:37:02 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/08/21 07:14:44 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:26:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,4 @@ void	free_all(t_general *g)
 	free(g->so_texture);
 	free(g->we_texture);
 	free(g->ea_texture);
-	free (g);
 }

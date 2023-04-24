@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/24 16:10:32 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:30:26 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,33 @@ int	ft_keyrelease(int keycode, t_general *g)
 
 int	main(int argc, char **argv)
 {
-	t_general	*general;
+	t_general	general;
 
 	if (argc != 2)
 	{
 		printf("Cub3d error: bad arguments.\n");
 		return (0);
 	}
-	general = (t_general *)ft_calloc(sizeof(t_general), 1);
-	general->mlx = mlx_init();
-	init_struct(general);
-	parse_map(general, argv[1]);
-	init_window(general);
-	mlx_hook(general->win, 2, (1L << 0), ft_keypress, general);
-	mlx_hook(general->win, 3, (1L << 1), ft_keyrelease, general);
-	mlx_loop_hook(general->mlx, game_loop, general);
-	mlx_loop(general->mlx);
-	free_all(general);
+	ft_bzero(&general, sizeof(t_general));
+	general.mlx = mlx_init();
+	init_struct(&general);
+	parse_map(&general, argv[1]);
+	init_window(&general);
+	mlx_hook(general.win, 2, (1L << 0), ft_keypress, &general);
+	mlx_hook(general.win, 3, (1L << 1), ft_keyrelease, &general);
+	mlx_loop_hook(general.mlx, game_loop, &general);
+	mlx_loop(general.mlx);
+	free_all(&general);
 	return (0);
 }
 
-// void	ft_leaks(void)
-// {
-// 	system("leaks cube3d");
-// }
-
-// print_general(general);
+/*
+void	ft_leaks(void)
+{
+	system("leaks cub3D");
+}
+print_general(general);
+*/
 /*
 void	print_general(t_general *g)
 {
