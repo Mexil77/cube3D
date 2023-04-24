@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/07 12:59:14 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:15:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,11 +197,13 @@ char	**duplicate_char_matrix(char **m);
 /* covered */
 bool	covered(char **m, size_t x, size_t y);
 bool	cover_char(char c);
+void	check_repeat_variable(t_general *g, int opt);
 
 /* validations */
 void	replace_chars(char **map);
 
 /* main */
 bool	get_texture(t_general *g, t_img *image, char *texture_str);
+void	print_general(t_general *g);
 
 #endif

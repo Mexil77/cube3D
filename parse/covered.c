@@ -6,11 +6,23 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:35:23 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 05:59:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:20:27 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+
+void	check_repeat_variable(t_general *g, int opt)
+{
+	if ((opt == 1 && g->no_texture) || (opt == 2 && g->so_texture)
+		|| (opt == 3 && g->we_texture) || (opt == 5 && g->color_floor >= 0)
+		|| (opt == 4 && g->ea_texture) || (opt == 6 && g->color_celing >= 0))
+	{
+		printf("cub3D: error: Mapa Invalido\n");
+		free_all(g);
+		exit(0);
+	}
+}
 
 bool	cover_char(char c)
 {

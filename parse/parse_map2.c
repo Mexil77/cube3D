@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:18:59 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/07 13:56:56 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:32:26 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,20 @@ char	**file_to_map(char *file_name)
 	return (map);
 }
 
+bool	check_name_map(char *file_name)
+{
+	size_t	i;
+
+	i = -1;
+	while (file_name[++i])
+		if (file_name[i] == '.' && !ft_strncmp(&file_name[i], ".cub\0", 5))
+			return (true);
+	return (false);
+}
+
 void	parse_map(t_general *g, char *file_name)
 {
-	if (open(file_name, O_RDWR) < 0)
+	if (!check_name_map(file_name) || open(file_name, O_RDWR) < 0)
 	{
 		printf("cub3D: error: Mapa Invalido\n");
 		free_all(g);

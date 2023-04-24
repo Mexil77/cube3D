@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:54:45 by emgarcia          #+#    #+#              #
-#    Updated: 2023/03/30 01:37:07 by emgarcia         ###   ########.fr        #
+#    Updated: 2023/04/24 13:38:18 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,10 @@ SRCS	=	main.c														\
 			game/game_loop.c
 LIBFT	=	Libft/libft.a
 OBJS	=	${SRCS:.c=.o}
-NAME	=	cube3d
+NAME	=	cub3D
 CC		=	gcc
-# CFLAGS	=	-Wall -Wextra -Werror -Imlx
-CFLAGS	=	-Wall -Wextra -Werror -Imlx -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -Imlx
+# CFLAGS	=	-Wall -Wextra -Werror -Imlx -g3 -fsanitize=address
 RM		=	rm -rf
 
 all: ${NAME}

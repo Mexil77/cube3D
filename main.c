@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:54:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/04/07 13:35:42 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:10:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,14 @@ int	main(int argc, char **argv)
 	free_all(general);
 	return (0);
 }
-/*
-void	ft_leaks(void)
-{
-	system("leaks cube3d");
-}
 
-print_general(general);
+// void	ft_leaks(void)
+// {
+// 	system("leaks cube3d");
+// }
+
+// print_general(general);
+/*
 void	print_general(t_general *g)
 {
 	printf("posx : %f\n", g->posx);
@@ -101,5 +102,5 @@ void	print_general(t_general *g)
 	printf("color_floor : %d\n", g->color_floor);
 	printf("color_celing : %d\n", g->color_celing);
 	print_double_pointer(g->map);
-
-} */
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 04:01:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2023/03/30 05:09:54 by emgarcia         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:16:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	get_data(t_general *g, size_t i, size_t *j, int opt)
 {
 	if (!check_name_data(g, i, j, opt))
 		return ;
+	check_repeat_variable(g, opt);
 	(*j)++;
 	if (opt <= 4)
 		*j += 1;
